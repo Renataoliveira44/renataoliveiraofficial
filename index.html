@@ -32,14 +32,14 @@
         .top-categories a { margin-right: 25px; font-weight: 500; }
         .top-socials a { margin-left: 18px; font-size: 13px; color: #111; }
 
-        /* --- BRANDING --- */
+        /* --- LOGO --- */
         .site-header { padding: 60px 0 45px; text-align: center; }
         .site-title {
             font-family: 'Playfair Display', serif;
             font-size: 54px; letter-spacing: 12px; text-transform: uppercase; margin: 0; font-weight: 400;
         }
 
-        /* --- NAVIGATION & DROPDOWNS --- */
+        /* --- NAVIGATION --- */
         .main-nav {
             border-top: 1px solid #f2f2f2; border-bottom: 1px solid #f2f2f2;
             padding: 18px 0; text-align: center; position: sticky; top: 0;
@@ -48,17 +48,17 @@
         .nav-links { margin: 0; padding: 0; list-style: none; display: flex; justify-content: center; }
         .nav-links > li { position: relative; margin: 0 25px; font-size: 11px; letter-spacing: 3px; font-weight: 500; }
 
+        /* Dropdowns */
         .submenu {
             display: none; position: absolute; top: 100%; left: 50%;
             transform: translateX(-50%); background: white; min-width: 230px;
-            border: 1px solid #f2f2f2; padding: 20px 0; margin-top: 15px;
+            border: 1px solid #f2f2f2; padding: 25px 0; margin-top: 15px;
             z-index: 2000; text-align: left; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
         .submenu.show { display: block; }
         .submenu li { display: block; position: relative; padding: 8px 25px; }
         .submenu li a { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #333; display: flex; justify-content: space-between; align-items: center; }
         
-        /* Fly-out Menu (Second Level) */
         .has-second-level:hover .second-level-menu { display: block; }
         .second-level-menu {
             display: none; position: absolute; top: -20px; left: 100%;
@@ -67,63 +67,79 @@
         }
         .arrow { font-size: 14px; margin-left: 10px; }
 
-        /* --- HERO --- */
+        /* --- HERO CAROUSEL --- */
         .hero { padding: 0; max-width: 100%; margin: 0 auto; position: relative; }
         .hero-container {
-            width: 100%; height: 75vh;
-            background-image: url('https://images.unsplash.com/photo-1493128477676-4668bb5680d2?q=80&w=2000');
+            width: 100%; height: 85vh;
+            background-image: url('https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=2000');
             background-size: cover; background-position: center;
+            position: relative; transition: background-image 1s ease-in-out;
         }
         .hero-box {
-            position: absolute; bottom: -50px; left: 50%; transform: translateX(-50%);
-            background: white; padding: 50px 70px; width: 90%; max-width: 750px;
-            text-align: center; border: 1px solid #eee; box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.96); padding: 60px 80px;
+            width: 90%; max-width: 800px; text-align: center;
+            border: 1px solid #eee; box-shadow: 0 20px 50px rgba(0,0,0,0.05); z-index: 10;
         }
-        .hero-box .cat { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: #999; margin-bottom: 15px; display: block; }
-        .hero-box h2 { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 400; margin: 0 0 20px; line-height: 1.2; }
+        .hero-box .cat { font-size: 10px; letter-spacing: 5px; text-transform: uppercase; color: #999; margin-bottom: 20px; display: block; }
+        .hero-box h2 { font-family: 'Playfair Display', serif; font-size: 44px; font-weight: 400; margin: 0 0 25px; line-height: 1.2; }
+        .hero-box p { font-size: 14px; color: #666; margin-bottom: 35px; max-width: 500px; margin-left: auto; margin-right: auto; }
+        .btn-read-more { background: #111; color: #fff; padding: 15px 45px; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; border: none; }
+
+        /* --- CATEGORY TRIPLE GRID --- */
+        .category-triple {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            max-width: 1300px; margin: 100px auto 60px; gap: 20px; padding: 0 40px;
+        }
+        .triple-item {
+            height: 450px; background-size: cover; background-position: center;
+            position: relative; display: flex; align-items: center; justify-content: center;
+        }
+        .triple-label { background: rgba(255, 255, 255, 0.9); padding: 15px 50px; font-size: 12px; letter-spacing: 4px; text-transform: uppercase; }
 
         /* --- MAIN CONTENT & SIDEBAR --- */
-        .content-wrapper { display: flex; max-width: 1250px; margin: 120px auto 60px; padding: 0 40px; gap: 80px; }
+        .content-wrapper { display: flex; max-width: 1250px; margin: 80px auto; padding: 0 40px; gap: 80px; }
         .main-content { flex: 1; }
         .sidebar { width: 300px; flex-shrink: 0; text-align: center; }
-
-        /* Shared Line Header Style */
         .line-header { display: flex; align-items: center; justify-content: center; margin-bottom: 50px; }
         .line { flex: 1; height: 1px; background: #eee; }
         .header-title { font-family: 'Playfair Display', serif; font-size: 22px; margin: 0 30px; letter-spacing: 3px; text-transform: uppercase; }
 
-        /* --- BLOG ENTRY --- */
-        .post-entry { margin-bottom: 80px; text-align: center; }
-        .post-meta { font-size: 10px; letter-spacing: 3px; color: #aaa; text-transform: uppercase; display: block; margin-bottom: 15px; }
-        .post-title { font-family: 'Playfair Display', serif; font-size: 40px; margin: 0 0 25px; font-weight: 400; }
-        .post-img { width: 100%; height: auto; margin-bottom: 30px; }
+        /* --- CURRENTLY LOVING --- */
+        .loving-section { max-width: 1300px; margin: 80px auto; padding: 0 40px; text-align: center; }
+        .loving-grid { display: flex; align-items: center; justify-content: space-between; margin-top: 40px; gap: 20px; }
+        .loving-item { flex: 1; text-align: center; }
+        .loving-item img { width: 100%; height: auto; transition: 0.3s; }
 
-        /* --- SHOP MY FAVORITES --- */
-        .shop-favorites { max-width: 1250px; margin: 100px auto; padding: 0 40px; text-align: center; }
-        .shop-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-top: 40px; }
-        .item-img-container { position: relative; overflow: hidden; aspect-ratio: 3/4; margin-bottom: 20px; background: #f9f9f9; }
-        .item-img-container img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
-        .shop-item:hover .item-img-container img { transform: scale(1.05); }
-        .shop-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255,255,255,0.4); display: flex; justify-content: center; align-items: center;
-            opacity: 0; transition: 0.4s;
+        /* --- INSTAGRAM CAROUSEL & BUTTON --- */
+        .insta-carousel-wrap { position: relative; margin-top: 50px; overflow: hidden; }
+        .insta-carousel { display: grid; grid-template-columns: repeat(6, 1fr); width: 100%; }
+        .insta-img { aspect-ratio: 1/1; background-size: cover; background-position: center; border: 5px solid #fff; }
+        .insta-float-btn {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            background: #fff; padding: 15px 35px; font-size: 11px; letter-spacing: 3px;
+            font-weight: 600; text-transform: uppercase; box-shadow: 0 10px 30px rgba(0,0,0,0.1); z-index: 100;
         }
-        .shop-item:hover .shop-overlay { opacity: 1; }
-        .shop-overlay a { background: white; padding: 12px 25px; font-size: 10px; letter-spacing: 2px; font-weight: 600; text-transform: uppercase; }
-        .brand-name { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; margin: 0; }
-        .product-name { font-family: 'Playfair Display', serif; font-style: italic; font-size: 14px; color: #888; }
 
-        /* --- FOOTER / INSTA --- */
-        .insta-grid { display: grid; grid-template-columns: repeat(6, 1fr); margin-top: 50px; }
-        .insta-item { aspect-ratio: 1/1; background-size: cover; background-position: center; }
+        /* --- FOOTER --- */
+        .site-footer { background-color: #f9f8f6; padding: 80px 60px; color: #333; border-top: 1px solid #f2f2f2; }
+        .footer-container { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; max-width: 1200px; margin: 0 auto; gap: 40px; }
+        .footer-column h4 { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 400; margin: 0 0 25px; }
+        .footer-column ul { list-style: none; padding: 0; margin: 0; }
+        .footer-column li { margin-bottom: 12px; }
+        .footer-column a { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 500; }
 
-        /* Responsive */
+        .bottom-footer { background-color: #fcfcfc; padding: 30px 60px; border-top: 1px solid #f2f2f2; }
+        .bottom-footer-container {
+            max-width: 1300px; margin: 0 auto; display: flex; justify-content: space-between;
+            align-items: center; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #555;
+        }
+
         @media (max-width: 1024px) {
-            .content-wrapper { flex-direction: column; align-items: center; }
-            .sidebar { width: 100%; max-width: 500px; margin-top: 60px; }
-            .shop-grid { grid-template-columns: repeat(2, 1fr); }
-            .insta-grid { grid-template-columns: repeat(3, 1fr); }
+            .footer-container, .category-triple { grid-template-columns: 1fr; }
+            .content-wrapper { flex-direction: column; }
+            .insta-carousel { grid-template-columns: repeat(3, 1fr); }
+            .bottom-footer-container { flex-direction: column; gap: 20px; }
         }
     </style>
 </head>
@@ -153,26 +169,22 @@
             <li class="dropdown">
                 <a class="drop-trigger" onclick="toggleMenu('templateSubmenu', event)">TEMPLATES</a>
                 <ul class="submenu" id="templateSubmenu">
-                    <li><a href="#">ABOUT</a></li>
                     <li><a href="#">BLOG</a></li>
-                    <li><a href="#">CATEGORY INDEX</a></li>
-                    <li><a href="#">CONTACT</a></li>
+                    <li><a href="#">PORTFOLIO</a></li>
+                    <li><a href="#">SERVICES</a></li>
+                    <li><a href="#">SUBSCRIBE</a></li>
                 </ul>
             </li>
             <li class="dropdown">
                 <a class="drop-trigger" onclick="toggleMenu('featuresSubmenu', event)">FEATURES</a>
                 <ul class="submenu" id="featuresSubmenu">
-                    <li><a href="#">BLOG BLOCKS</a></li>
                     <li class="has-second-level">
                         <a href="#">BLOG LAYOUTS <span class="arrow">›</span></a>
                         <ul class="second-level-menu">
                             <li><a href="#">GRID LAYOUT</a></li>
                             <li><a href="#">LIST LAYOUT</a></li>
-                            <li><a href="#">CLASSIC LAYOUT</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">BLOCK COLLECTION</a></li>
-                    <li><a href="#">RECIPE CARD</a></li>
                     <li><a href="#">SHOP THE POST</a></li>
                 </ul>
             </li>
@@ -182,61 +194,97 @@
     </nav>
 
     <section class="hero">
-        <div class="hero-container">
+        <div class="hero-container" id="heroBg">
             <div class="hero-box">
                 <span class="cat">Living</span>
-                <h2>How to Stay Focused While Working From Home</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ultricies ultricies nulla...</p>
+                <h2>Minimalist Morning Routines</h2>
+                <p>Curating a life of intention, one morning at a time.</p>
+                <a href="#" class="btn-read-more">Read More</a>
             </div>
         </div>
+    </section>
+
+    <section class="category-triple">
+        <div class="triple-item" style="background-image: url('https://images.unsplash.com/photo-1490481651871-ab68624d5517?q=80&w=800');"><div class="triple-label">Style</div></div>
+        <div class="triple-item" style="background-image: url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=800');"><div class="triple-label">Travel</div></div>
+        <div class="triple-item" style="background-image: url('https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=800');"><div class="triple-label">Living</div></div>
     </section>
 
     <div class="content-wrapper">
         <div class="main-content">
-            <div class="line-header">
-                <span class="line"></span>
-                <h2 class="header-title">The Latest</h2>
-                <span class="line"></span>
-            </div>
-            <article class="post-entry">
-                <span class="post-meta">Travel &middot; Destination Guide</span>
-                <h2 class="post-title">Slow Mornings in Paris</h2>
-                <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=1200" class="post-img">
+            <div class="line-header"><span class="line"></span><h2 class="header-title">The Latest</h2><span class="line"></span></div>
+            <article style="text-align:center;">
+                <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=1200" style="width:100%; margin-bottom:20px;">
+                <h2 style="font-family:'Playfair Display'; font-size:36px; font-weight:400;">Slow Mornings in Paris</h2>
                 <a href="#" style="font-size: 11px; letter-spacing: 2px; border-bottom: 1px solid #333; padding-bottom: 5px; font-weight: 600; text-transform: uppercase;">Read More</a>
             </article>
         </div>
-
         <aside class="sidebar">
             <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=600" style="width:220px; height:220px; border-radius:50%; object-fit:cover; margin-bottom:25px;">
-            <p style="font-family: 'Playfair Display', serif; font-style: italic; color: #666;">I'm Renata, a travel and beauty influencer documenting my journeys across 140+ countries.</p>
+            <p style="font-family: 'Playfair Display', serif; font-style: italic; color: #666;">I'm Renata, documenting my journeys across 140+ countries.</p>
         </aside>
     </div>
 
-    <section class="shop-favorites">
-        <div class="line-header"><span class="line"></span><h2 class="header-title">Shop My Favorites</h2><span class="line"></span></div>
-        <div class="shop-grid">
-            <div class="shop-item">
-                <div class="item-img-container">
-                    <img src="https://images.unsplash.com/photo-1596462502278-27bfdc4033c8?q=80&w=800">
-                    <div class="shop-overlay"><a href="#">SHOP NOW</a></div>
-                </div>
-                <p class="brand-name">Summer Fridays</p><p class="product-name">Lip Butter Balm</p>
-            </div>
-            </div>
+    <section class="loving-section">
+        <div class="line-header"><span class="line"></span><h2 class="header-title">Currently Loving</h2><span class="line"></span></div>
+        <div class="loving-grid">
+            <div class="loving-item"><img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=400"></div>
+            <div class="loving-item"><img src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?q=80&w=400"></div>
+            <div class="loving-item"><img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=400"></div>
+            <div class="loving-item"><img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=400"></div>
+        </div>
     </section>
 
-    <div class="insta-grid">
-        <div class="insta-item" style="background-image: url('https://images.unsplash.com/photo-1523260572679-836891005126?q=80&w=400');"></div>
-        <div class="insta-item" style="background-image: url('https://images.unsplash.com/photo-1506157786151-b8491531f063?q=80&w=400');"></div>
-        <div class="insta-item" style="background-image: url('https://images.unsplash.com/photo-1549439602-43ebca2327af?q=80&w=400');"></div>
-        <div class="insta-item" style="background-image: url('https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?q=80&w=400');"></div>
-        <div class="insta-item" style="background-image: url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=400');"></div>
-        <div class="insta-item" style="background-image: url('https://images.unsplash.com/photo-1445205170230-053b83016050?q=80&w=400');"></div>
+    <section class="insta-carousel-wrap">
+        <a href="#" class="insta-float-btn"><i class="fab fa-instagram"></i> THE LATEST</a>
+        <div class="insta-carousel">
+            <div class="insta-img" style="background-image: url('https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?q=80&w=400');"></div>
+            <div class="insta-img" style="background-image: url('https://images.unsplash.com/photo-1484101403633-562f891dc89a?q=80&w=400');"></div>
+            <div class="insta-img" style="background-image: url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=400');"></div>
+            <div class="insta-img" style="background-image: url('https://images.unsplash.com/photo-1512436030959-2ec6473187c3?q=80&w=400');"></div>
+            <div class="insta-img" style="background-image: url('https://images.unsplash.com/photo-1445205170230-053b83016050?q=80&w=400');"></div>
+            <div class="insta-img" style="background-image: url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=400');"></div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h2 style="font-family: 'Playfair Display'; letter-spacing: 4px; text-transform: uppercase;">Renata</h2>
+                <p style="font-family: 'Playfair Display'; font-style: italic; color: #777;">Influencer & Strategist</p>
+                <div style="font-size: 14px; margin-top: 15px;">
+                    <a href="#" style="margin-right: 15px;"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Explore</h4>
+                <ul><li><a href="#">The Shop</a></li><li><a href="#">Blog</a></li><li><a href="#">Favorites</a></li></ul>
+            </div>
+            <div class="footer-column">
+                <h4>Info</h4>
+                <ul><li><a href="#">Meet Renata</a></li><li><a href="#">Services</a></li><li><a href="#">Contact</a></li></ul>
+            </div>
+            <div class="footer-column">
+                <h4>Categories</h4>
+                <ul><li><a href="#">Style</a></li><li><a href="#">Living</a></li><li><a href="#">Travel</a></li></ul>
+            </div>
+        </div>
+    </footer>
+
+    <div class="bottom-footer">
+        <div class="bottom-footer-container">
+            <div class="footer-legal"><a href="#">Privacy Policy</a> <a href="#">Disclosure</a></div>
+            <div class="footer-copyright">
+                <span>© 2026 Renata Oliveira · Theme by Renata Oliver web desiner</span>
+                <a href="#" style="margin-left: 20px;"><i class="fas fa-chevron-up"></i></a>
+            </div>
+        </div>
     </div>
 
     <script>
         function toggleMenu(menuId, event) {
-            event.stopPropagation();
+            event.preventDefault(); event.stopPropagation();
             const allMenus = document.querySelectorAll('.submenu');
             allMenus.forEach(m => { if(m.id !== menuId) m.classList.remove('show'); });
             document.getElementById(menuId).classList.toggle("show");
@@ -246,6 +294,16 @@
                 document.querySelectorAll('.submenu').forEach(m => m.classList.remove('show'));
             }
         }
+        let slideIdx = 0;
+        const imgs = [
+            'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=2000',
+            'https://images.unsplash.com/photo-1493128477676-4668bb5680d2?q=80&w=2000'
+        ];
+        function nextSlide() {
+            slideIdx = (slideIdx + 1) % imgs.length;
+            document.getElementById('heroBg').style.backgroundImage = `url(${imgs[slideIdx]})`;
+        }
+        setInterval(nextSlide, 5000);
     </script>
 </body>
 </html>
