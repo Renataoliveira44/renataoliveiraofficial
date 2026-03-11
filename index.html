@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
+        /* --- GLOBAL STYLES --- */
         * { box-sizing: border-box; }
         body {
             margin: 0; padding: 0;
@@ -19,115 +20,79 @@
             color: #333; background-color: #fff;
             line-height: 1.8;
         }
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; cursor: pointer; }
         a:hover { opacity: 0.6; }
 
-        /* --- TOP BAR (Categories & Socials) --- */
+        /* --- TOP BAR --- */
         .top-bar {
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center;
-            padding: 12px 40px; 
-            font-size: 10px; 
-            letter-spacing: 2.5px;
-            border-bottom: 1px solid #f2f2f2; 
-            text-transform: uppercase;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 12px 40px; font-size: 10px; letter-spacing: 2.5px;
+            border-bottom: 1px solid #f2f2f2; text-transform: uppercase;
         }
         .top-categories a { margin-right: 25px; font-weight: 500; }
         .top-socials a { margin-left: 18px; font-size: 13px; color: #111; }
 
-        /* --- MAIN HEADER & LOGO --- */
+        /* --- BRANDING --- */
         .site-header { padding: 60px 0 45px; text-align: center; }
         .site-title {
             font-family: 'Playfair Display', serif;
-            font-size: 54px; 
-            letter-spacing: 12px; 
-            text-transform: uppercase; 
-            margin: 0;
-            font-weight: 400;
+            font-size: 54px; letter-spacing: 12px; text-transform: uppercase; margin: 0; font-weight: 400;
         }
 
-        /* --- MAIN NAVIGATION --- */
+        /* --- NAVIGATION --- */
         .main-nav {
-            border-top: 1px solid #f2f2f2; 
-            border-bottom: 1px solid #f2f2f2;
-            padding: 18px 0; 
-            text-align: center; 
-            position: sticky; 
-            top: 0;
-            background: white; 
-            z-index: 1000;
+            border-top: 1px solid #f2f2f2; border-bottom: 1px solid #f2f2f2;
+            padding: 18px 0; text-align: center; position: sticky; top: 0;
+            background: white; z-index: 1000;
         }
-        .main-nav ul { margin: 0; padding: 0; list-style: none; }
-        .main-nav li { display: inline-block; margin: 0 25px; font-size: 11px; letter-spacing: 3px; font-weight: 500; }
+        .nav-links { margin: 0; padding: 0; list-style: none; display: flex; justify-content: center; }
+        .nav-links > li { position: relative; margin: 0 25px; font-size: 11px; letter-spacing: 3px; font-weight: 500; }
 
-        /* --- HERO & CONTENT SECTIONS --- */
-        .hero { padding: 0; max-width: 100%; margin: 0 auto; }
+        /* --- DROPDOWN SUBMENUS --- */
+        .submenu {
+            display: none; position: absolute; top: 100%; left: 50%;
+            transform: translateX(-50%); background: white; min-width: 230px;
+            border: 1px solid #f2f2f2; padding: 20px 0; margin-top: 15px;
+            z-index: 2000; text-align: left; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        .submenu.show { display: block; }
+        .submenu li { display: block; position: relative; padding: 8px 25px; }
+        .submenu li a { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #333; display: flex; justify-content: space-between; align-items: center; }
+        
+        /* Fly-out Menu (Second Level for Blog Layouts) */
+        .has-second-level:hover .second-level-menu { display: block; }
+        .second-level-menu {
+            display: none; position: absolute; top: -20px; left: 100%;
+            background: white; min-width: 180px; border: 1px solid #f2f2f2;
+            padding: 15px 0; box-shadow: 10px 10px 30px rgba(0,0,0,0.05);
+        }
+        .arrow { font-size: 14px; margin-left: 10px; font-weight: 300; }
+
+        /* --- HERO --- */
+        .hero { padding: 0; max-width: 100%; margin: 0 auto; position: relative; }
         .hero-container {
             width: 100%; height: 75vh;
             background-image: url('https://images.unsplash.com/photo-1515871204537-49a5fe66a31f?q=80&w=2000');
             background-size: cover; background-position: center;
-            position: relative;
         }
-        
-        /* Floating Hero Box (Matches Screenshot) */
         .hero-box {
-            position: absolute;
-            bottom: -50px; left: 50%;
-            transform: translateX(-50%);
-            background: white;
-            padding: 50px 70px;
-            width: 90%; max-width: 700px;
-            text-align: center;
-            border: 1px solid #eee;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+            position: absolute; bottom: -50px; left: 50%; transform: translateX(-50%);
+            background: white; padding: 50px 70px; width: 90%; max-width: 750px;
+            text-align: center; border: 1px solid #eee; box-shadow: 0 10px 40px rgba(0,0,0,0.03);
         }
         .hero-box .cat { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: #999; margin-bottom: 15px; display: block; }
         .hero-box h2 { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 400; margin: 0 0 20px; line-height: 1.2; }
-        .hero-box p { font-size: 13px; color: #777; margin-bottom: 0; }
 
-        /* --- THE MIDDLE SECTION --- */
-        .content-wrapper {
-            display: flex; max-width: 1250px; margin: 120px auto 60px;
-            padding: 0 40px; gap: 80px; align-items: flex-start;
-        }
-        .main-content { flex: 1; }
-        .sidebar { width: 300px; flex-shrink: 0; text-align: center; }
-
-        /* --- SIDEBAR --- */
-        .profile-circle { width: 220px; height: 220px; border-radius: 50%; object-fit: cover; margin-bottom: 25px; }
-        .sidebar-blurb { font-family: 'Playfair Display', serif; font-size: 15px; font-style: italic; color: #666; margin-bottom: 25px; }
-        .newsletter-box { background-color: #fbfbfb; padding: 35px 25px; margin: 40px 0; border: 1px solid #f5f5f5; }
-        .newsletter-box h3 { font-family: 'Playfair Display', serif; font-size: 20px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
-        .newsletter-box input { width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #eee; font-size: 11px; outline: none; }
-        .btn-subscribe { width: 100%; background: #111; color: #fff; padding: 12px; border: none; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; }
-        .cat-btn { display: block; padding: 12px; border: 1px solid #f2f2f2; margin-bottom: 8px; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #555; }
-
-        /* --- BLOG POSTS --- */
-        .line-header { display: flex; align-items: center; justify-content: center; margin-bottom: 50px; }
-        .line { flex: 1; height: 1px; background: #eee; }
-        .header-title { font-family: 'Playfair Display', serif; font-size: 22px; margin: 0 30px; letter-spacing: 3px; text-transform: uppercase; }
-        .post-entry { margin-bottom: 80px; text-align: center;}
-        .post-meta { font-size: 10px; letter-spacing: 3px; color: #aaa; text-transform: uppercase; display: block; margin-bottom: 15px; }
-        .post-title { font-family: 'Playfair Display', serif; font-size: 40px; margin: 0 0 25px; font-weight: 400; }
-        .post-img { width: 100%; height: auto; margin-bottom: 30px; }
-
-        /* --- INSTAGRAM FOOTER --- */
-        .insta-section { position: relative; margin-top: 100px; }
-        .insta-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0; }
-        .insta-item { aspect-ratio: 1/1; background-size: cover; background-position: center; }
-        .insta-btn {
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            background: white; padding: 18px 45px; font-size: 11px; letter-spacing: 4px;
-            font-weight: 600; box-shadow: 0 10px 40px rgba(0,0,0,0.1); z-index: 10;
-            text-transform: uppercase;
-        }
+        /* --- FOOTER --- */
+        .site-footer { background-color: #f9f8f6; padding: 80px 60px; color: #333; margin-top: 100px; }
+        .footer-container { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; max-width: 1200px; margin: 0 auto; gap: 40px; }
+        .footer-column h4 { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 400; margin: 0 0 25px; }
+        .footer-column ul { list-style: none; padding: 0; margin: 0; }
+        .footer-column li { margin-bottom: 12px; }
+        .footer-column a { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 500; }
 
         @media (max-width: 1024px) {
-            .content-wrapper { flex-direction: column; align-items: center; }
-            .sidebar { width: 100%; max-width: 500px; margin-top: 60px; }
-            .insta-grid { grid-template-columns: repeat(3, 1fr); }
-            .hero-box { width: 95%; padding: 30px; }
+            .footer-container { grid-template-columns: 1fr 1fr; }
         }
     </style>
 </head>
@@ -135,10 +100,7 @@
 
     <div class="top-bar">
         <div class="top-categories">
-            <a href="#">Style</a>
-            <a href="#">Living</a>
-            <a href="#">Travel</a>
-            <a href="#">Beauty</a>
+            <a href="#">Style</a> <a href="#">Living</a> <a href="#">Travel</a> <a href="#">Beauty</a>
         </div>
         <div class="top-socials">
             <a href="#"><i class="fab fa-instagram"></i></a>
@@ -154,76 +116,104 @@
     </header>
 
     <nav class="main-nav">
-        <ul>
-            <li>HOME</li>
-            <li>ABOUT</li>
-            <li>TEMPLATES</li>
-            <li>FEATURES</li>
-            <li>SHOP</li>
-            <li>CONTACT</li>
+        <ul class="nav-links">
+            <li><a href="#">HOME</a></li>
+            <li><a href="#">ABOUT</a></li>
+            
+            <li class="dropdown">
+                <a class="drop-trigger" onclick="toggleMenu('templateSubmenu', event)">TEMPLATES</a>
+                <ul class="submenu" id="templateSubmenu">
+                    <li><a href="#">ABOUT</a></li>
+                    <li><a href="#">BLOG</a></li>
+                    <li><a href="#">CATEGORY INDEX</a></li>
+                    <li><a href="#">CONTACT</a></li>
+                    <li><a href="#">PORTFOLIO</a></li>
+                    <li><a href="#">SERVICES</a></li>
+                    <li><a href="#">SOCIAL LANDING</a></li>
+                    <li><a href="#">SHOP OUR FAVORITES</a></li>
+                    <li><a href="#">SUBSCRIBE</a></li>
+                </ul>
+            </li>
+
+            <li class="dropdown">
+                <a class="drop-trigger" onclick="toggleMenu('featuresSubmenu', event)">FEATURES</a>
+                <ul class="submenu" id="featuresSubmenu">
+                    <li><a href="#">BLOG BLOCKS</a></li>
+                    <li class="has-second-level">
+                        <a href="#">BLOG LAYOUTS <span class="arrow">›</span></a>
+                        <ul class="second-level-menu">
+                            <li><a href="#">GRID LAYOUT</a></li>
+                            <li><a href="#">LIST LAYOUT</a></li>
+                            <li><a href="#">CLASSIC LAYOUT</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">BLOCK COLLECTION</a></li>
+                    <li><a href="#">CATEGORY GRID</a></li>
+                    <li><a href="#">RECIPE CARD</a></li>
+                    <li><a href="#">SHOP THE POST</a></li>
+                    <li><a href="#">THEME CUSTOMIZER</a></li>
+                </ul>
+            </li>
+
+            <li><a href="#">SHOP</a></li>
+            <li><a href="#">CONTACT</a></li>
         </ul>
     </nav>
 
     <section class="hero">
         <div class="hero-container">
             <div class="hero-box">
-                <span class="cat">Living</span>
-                <h2>Our Favorite Neutral Coffee Table Books</h2>
+                <span class="cat">Spring Style</span>
+                <h2>How to Dress Like a French Girl</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ultricies ultricies nulla, convallis maximus lacus imperdiet...</p>
             </div>
         </div>
     </section>
 
-    <div class="content-wrapper">
-        <div class="main-content">
-            <div class="line-header">
-                <span class="line"></span>
-                <h2 class="header-title">The Latest</h2>
-                <span class="line"></span>
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h2 style="font-family: 'Playfair Display'; letter-spacing: 4px; text-transform: uppercase;">Renata</h2>
+                <p style="font-family: 'Playfair Display'; font-style: italic; color: #777;">Travel & Beauty Influencer</p>
             </div>
-
-            <article class="post-entry">
-                <span class="post-meta">Travel &middot; Destination Guide</span>
-                <h2 class="post-title">Slow Mornings in the Heart of Paris</h2>
-                <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=1200" class="post-img">
-                <p>There is nothing quite like the first light of dawn hitting the Seine. Join me for a guide on how to spend a quiet, luxurious morning in the 1st Arrondissement...</p>
-                <a href="#" style="font-size: 11px; letter-spacing: 2px; border-bottom: 1px solid #333; padding-bottom: 5px; font-weight: 600; text-transform: uppercase;">Read More</a>
-            </article>
+            <div class="footer-column">
+                <h4>Explore</h4>
+                <ul><li><a href="#">The Shop</a></li><li><a href="#">Blog</a></li><li><a href="#">Favorites</a></li></ul>
+            </div>
+            <div class="footer-column">
+                <h4>Info</h4>
+                <ul><li><a href="#">Meet Renata</a></li><li><a href="#">Services</a></li><li><a href="#">Contact</a></li></ul>
+            </div>
+            <div class="footer-column">
+                <h4>On the Blog</h4>
+                <ul><li><a href="#">Style</a></li><li><a href="#">Living</a></li><li><a href="#">Travel</a></li></ul>
+            </div>
         </div>
+    </footer>
 
-        <aside class="sidebar">
-            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=600" class="profile-circle">
-            <p class="sidebar-blurb">I'm Renata, a travel and beauty influencer documenting my journeys across 140+ countries.</p>
-            <a href="#" style="font-size: 10px; letter-spacing: 2px; border-bottom: 1px solid #333; padding-bottom: 3px; text-transform: uppercase;">About Me</a>
+    <script>
+        function toggleMenu(menuId, event) {
+            event.preventDefault();
+            event.stopPropagation();
+            
+            // Close other open menus
+            const allMenus = document.querySelectorAll('.submenu');
+            allMenus.forEach(m => {
+                if(m.id !== menuId) m.classList.remove('show');
+            });
 
-            <div class="newsletter-box">
-                <h3>Join the List</h3>
-                <input type="text" placeholder="FIRST NAME">
-                <input type="email" placeholder="EMAIL ADDRESS">
-                <button class="btn-subscribe">Subscribe</button>
-            </div>
+            // Toggle target menu
+            const target = document.getElementById(menuId);
+            target.classList.toggle("show");
+        }
 
-            <div style="text-align: left;">
-                <span style="font-size: 10px; letter-spacing: 3px; text-transform: uppercase; border-bottom: 1px solid #eee; display: block; padding-bottom: 10px; margin-bottom: 15px;">Explore Categories</span>
-                <a href="#" class="cat-btn">Style</a>
-                <a href="#" class="cat-btn">Living</a>
-                <a href="#" class="cat-btn">Travel</a>
-                <a href="#" class="cat-btn">Beauty</a>
-            </div>
-        </aside>
-    </div>
-
-    <section class="insta-section">
-        <a href="#" class="insta-btn">Follow @renataoliveiraofficial</a>
-        <div class="insta-grid">
-            <div class="insta-item" style="background-image: url('https://images.unsplash.com/photo-1523260572679-836891005126?q=80&w=400');"></div>
-            <div class="insta-item" style="background-image: url('https://images.unsplash.com/photo-1506157786151-b8491531f063?q=80&w=400');"></div>
-            <div class="insta-item" style="background-image: url('https://images.unsplash.com/photo-1549439602-43ebca2327af?q=80&w=400');"></div>
-            <div class="insta-item" style="background-image: url('https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?q=80&w=400');"></div>
-            <div class="insta-item" style="background-image: url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=400');"></div>
-            <div class="insta-item" style="background-image: url('https://images.unsplash.com/photo-1445205170230-053b83016050?q=80&w=400');"></div>
-        </div>
-    </section>
+        // Close dropdowns when clicking outside
+        window.onclick = function(event) {
+            if (!event.target.matches('.drop-trigger')) {
+                document.querySelectorAll('.submenu').forEach(m => m.classList.remove('show'));
+            }
+        }
+    </script>
 
 </body>
 </html>
