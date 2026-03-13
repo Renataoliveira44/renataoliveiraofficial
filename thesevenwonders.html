@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seven Wonders | Renata Oliveira</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* --- GLOBAL STYLES --- */
+        * { box-sizing: border-box; }
+        body { margin: 0; padding: 40px 0; font-family: 'Montserrat', sans-serif; color: #333; background-color: #fff; line-height: 1.8; }
+        a { text-decoration: none; color: inherit; transition: 0.3s ease; }
+        
+        /* --- EXPLORE BAR --- */
+        .explore-bar { max-width: 1300px; margin: 0 auto 40px; display: flex; justify-content: flex-end; gap: 20px; padding: 0 40px; }
+        .filter-item { border: 1px solid #f2f2f2; padding: 12px 25px; display: flex; align-items: center; background: #fff; }
+        .filter-item select, .filter-item input { border: none; outline: none; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #999; }
+
+        /* --- LAYOUT --- */
+        .map-section { display: flex; max-width: 1300px; margin: 0 auto; gap: 40px; padding: 0 40px; }
+        
+        /* --- SIDEBAR (Wonders Only) --- */
+        .map-sidebar { width: 280px; border-right: 1px solid #f2f2f2; padding-right: 40px; flex-shrink: 0; }
+        .sidebar-title { font-size: 11px; letter-spacing: 4px; color: #333; text-transform: uppercase; margin-bottom: 30px; display: block; border-bottom: 2px solid #cdc1b4; padding-bottom: 15px; font-weight: 600; }
+        .dest-list { list-style: none; padding: 0; margin: 0; }
+        .dest-list li { margin-bottom: 18px; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; font-weight: 500; transition: 0.3s; }
+        .dest-list li a { display: flex; align-items: center; }
+        .dest-list li span { color: #d4af37; margin-right: 15px; font-weight: bold; width: 20px; font-size: 12px; }
+        .dest-list li:hover { transform: translateX(8px); color: #d4af37; }
+
+        /* --- MAP WRAPPER --- */
+        .map-wrapper { flex: 1; position: relative; min-height: 750px; background: url('https://upload.wikimedia.org/wikipedia/commons/e/ec/World_map_blank_without_borders.svg') no-repeat center/contain; }
+        
+        /* --- GOLD WONDER PINS --- */
+        .map-pin { position: absolute; display: flex; flex-direction: column; align-items: center; transition: 0.4s ease; cursor: pointer; z-index: 5; }
+        .map-pin:hover { transform: translateY(-12px); z-index: 100; }
+        
+        .pin-num { background: #d4af37; color: #fff; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; border: 2px solid #fff; margin-bottom: -15px; z-index: 2; position: relative; box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3); }
+        
+        .pin-card { background: #fff; padding: 10px; border: 1px solid #f2f2f2; box-shadow: 0 10px 35px rgba(0,0,0,0.06); text-align: center; }
+        .pin-card img { width: 110px; height: 110px; object-fit: cover; display: block; transition: 0.3s; }
+        .map-pin:hover .pin-card img { filter: brightness(1.1); }
+        .pin-card span { font-size: 8px; letter-spacing: 2px; text-transform: uppercase; color: #888; margin-top: 10px; display: block; font-weight: 600; }
+
+        /* --- GEOGRAPHIC POSITIONS --- */
+        .loc-chichen { top: 44%; left: 22%; }      /* Mexico */
+        .loc-machu { top: 66%; left: 29%; }        /* Peru */
+        .loc-christ { top: 68%; left: 37%; }       /* Brazil */
+        .loc-colosseum { top: 28%; left: 52%; }    /* Italy */
+        .loc-petra { top: 38%; left: 61%; }        /* Jordan */
+        .loc-taj { top: 42%; left: 74%; }          /* India */
+        .loc-great-wall { top: 31%; left: 83%; }   /* China */
+
+        /* Passport Stamp */
+        .passport-stamp { position: absolute; bottom: 0; left: 0; width: 160px; height: 160px; border: 1px solid #c5d5c5; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; transform: rotate(-10deg); background: rgba(255,255,255,0.6); }
+        .stamp-cur { font-family: 'Mrs Saint Delafield', cursive; font-size: 26px; color: #8fa18f; }
+        .stamp-loc { border: 1px solid #8fa18f; padding: 5px 15px; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; margin-top: 6px; color: #8fa18f; font-weight: 600; }
+
+        @media (max-width: 1024px) {
+            .map-section { flex-direction: column; }
+            .map-sidebar { width: 100%; border: none; border-bottom: 1px solid #f2f2f2; padding: 0 0 40px 0; }
+            .map-wrapper { min-height: 500px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="explore-bar">
+        <div class="filter-item">
+            <select><option>The Seven Wonders</option></select>
+        </div>
+        <div class="filter-item">
+            <input type="text" placeholder="Search bucket list..."><i class="fas fa-search" style="margin-left:10px;"></i>
+        </div>
+    </div>
+
+    <section class="map-section">
+        <aside class="map-sidebar">
+            <span class="sidebar-title">The Seven Wonders</span>
+            <ul class="dest-list">
+                <li><a href="#"><span>W</span> Chichen Itza</a></li>
+                <li><a href="#"><span>W</span> Machu Picchu</a></li>
+                <li><a href="#"><span>W</span> Christ The Redeemer</a></li>
+                <li><a href="#"><span>W</span> The Colosseum</a></li>
+                <li><a href="#"><span>W</span> Petra, Jordan</a></li>
+                <li><a href="#"><span>W</span> Taj Mahal</a></li>
+                <li><a href="#"><span>W</span> Great Wall of China</a></li>
+            </ul>
+        </aside>
+
+        <div class="map-wrapper">
+            
+            <a href="#" class="map-pin loc-chichen">
+                <div class="pin-num">W</div>
+                <div class="pin-card">
+                    <img src="https://images.unsplash.com/photo-1518638153282-9c5c152cd244?q=80&w=300">
+                    <span>Chichen Itza</span>
+                </div>
+            </a>
+
+            <a href="#" class="map-pin loc-machu">
+                <div class="pin-num">W</div>
+                <div class="pin-card">
+                    <img src="./machupichu.png">
+                    <span>Machu Picchu</span>
+                </div>
+            </a>
+
+            <a href="#" class="map-pin loc-christ">
+                <div class="pin-num">W</div>
+                <div class="pin-card">
+                    <img src="./riodejaneiro.JPG">
+                    <span>The Redeemer</span>
+                </div>
+            </a>
+
+            <a href="#" class="map-pin loc-colosseum">
+                <div class="pin-num">W</div>
+                <div class="pin-card">
+                    <img src="./rome.JPG">
+                    <span>Colosseum</span>
+                </div>
+            </a>
+
+            <a href="#" class="map-pin loc-petra">
+                <div class="pin-num">W</div>
+                <div class="pin-card">
+                    <img src="./petra.JPG">
+                    <span>Petra</span>
+                </div>
+            </a>
+
+            <a href="#" class="map-pin loc-taj">
+                <div class="pin-num">W</div>
+                <div class="pin-card">
+                    <img src="./india.jpg">
+                    <span>Taj Mahal</span>
+                </div>
+            </a>
+
+            <a href="#" class="map-pin loc-great-wall">
+                <div class="pin-num">W</div>
+                <div class="pin-card">
+                    <img src="https://images.unsplash.com/photo-1508804185872-d7badad00f7d?q=80&w=300">
+                    <span>Great Wall</span>
+                </div>
+            </a>
+
+            <div class="passport-stamp">
+                <span class="stamp-cur">Currently in:</span>
+                <div class="stamp-loc">New York</div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
