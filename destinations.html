@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Destinations | Renata Oliveira</title>
+    <title>Travel Map | Renata Oliveira</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,206 +11,194 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
-        /* --- CORE STYLES --- */
+        /* --- GLOBAL STYLES --- */
         * { box-sizing: border-box; }
         body {
-            margin: 0; padding: 0;
+            margin: 0; padding: 60px 0;
             font-family: 'Montserrat', sans-serif;
             color: #333; background-color: #fff;
             line-height: 1.8;
         }
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-        a:hover { opacity: 0.6; }
+        a { text-decoration: none; color: inherit; transition: 0.3s ease; }
+        a:hover { opacity: 0.7; }
 
-        /* --- HEADER & NAV --- */
-        .site-header { padding: 60px 0 45px; text-align: center; }
-        .site-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 54px; letter-spacing: 12px; text-transform: uppercase; margin: 0; font-weight: 400;
+        /* --- EXPLORE BAR --- */
+        .explore-bar {
+            max-width: 1300px; margin: 0 auto 50px;
+            display: flex; justify-content: flex-end; gap: 20px; padding: 0 40px;
         }
-        .main-nav {
-            border-top: 1px solid #f2f2f2; border-bottom: 1px solid #f2f2f2;
-            padding: 18px 0; text-align: center; position: sticky; top: 0;
-            background: white; z-index: 1000;
-        }
-        .nav-links { margin: 0; padding: 0; list-style: none; display: flex; justify-content: center; }
-        .nav-links > li { margin: 0 25px; font-size: 11px; letter-spacing: 3px; font-weight: 500; text-transform: uppercase;}
+        .filter-item { border: 1px solid #f2f2f2; padding: 12px 25px; display: flex; align-items: center; background: #fff; }
+        .filter-item select, .filter-item input { border: none; outline: none; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #999; background: transparent; }
+        .filter-item button { background: none; border: none; cursor: pointer; color: #333; }
 
-        /* --- MOVING HERO SECTION (Next Trip: China) --- */
-        .dest-hero {
-            position: relative; height: 75vh; width: 100%;
-            display: flex; align-items: center; justify-content: center;
-            overflow: hidden;
-            background-color: #000;
-        }
+        /* --- INTERACTIVE MAP SECTION --- */
+        .map-section { display: flex; max-width: 1300px; margin: 0 auto; gap: 40px; padding: 0 40px; }
+        
+        /* Sidebar Navigation */
+        .map-sidebar { width: 260px; border: 1px solid #f2f2f2; padding: 45px 35px; flex-shrink: 0; }
+        .sidebar-title { font-size: 10px; letter-spacing: 3px; color: #999; text-transform: uppercase; margin-bottom: 35px; display: block; border-bottom: 1px solid #f9f9f9; padding-bottom: 10px;}
+        .dest-list { list-style: none; padding: 0; margin: 0; }
+        .dest-list li { margin-bottom: 20px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 500; transition: 0.3s; }
+        .dest-list li a { display: flex; align-items: center; width: 100%; }
+        .dest-list li span { color: #cdc1b4; margin-right: 18px; font-weight: bold; font-size: 12px; }
+        .dest-list li:hover { transform: translateX(5px); color: #cdc1b4; }
 
-        .hero-slideshow {
-            position: absolute; top: 0; left: 0;
-            width: 100%; height: 100%;
-            z-index: 1;
-        }
+        /* World Map Wrapper */
+        .map-wrapper { flex: 1; position: relative; min-height: 650px; background: url('https://upload.wikimedia.org/wikipedia/commons/e/ec/World_map_blank_without_borders.svg') no-repeat center/contain; }
+        
+        /* Map Pins Clickable */
+        .map-pin { position: absolute; display: flex; flex-direction: column; align-items: center; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; }
+        .map-pin:hover { transform: translateY(-15px) scale(1.05); z-index: 100; }
+        
+        .pin-num { background: #cdc1b4; color: #fff; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; border: 2px solid #fff; margin-bottom: -16px; z-index: 2; position: relative; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        
+        .pin-card { background: #fff; padding: 10px; border: 1px solid #f2f2f2; box-shadow: 0 15px 40px rgba(0,0,0,0.06); text-align: center; }
+        .pin-card img { width: 120px; height: 120px; object-fit: cover; display: block; filter: grayscale(20%); transition: 0.4s; }
+        .map-pin:hover .pin-card img { filter: grayscale(0%); }
+        .pin-card span { font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase; color: #888; margin-top: 10px; display: block; font-weight: 600; }
 
-        .slide {
-            position: absolute; width: 100%; height: 100%;
-            background-size: cover; background-position: center;
-            opacity: 0;
-            animation: slideAnimation 18s infinite;
-        }
+        /* Pin Positioning */
+        .p-asia { top: 25%; left: 78%; }
+        .p-europe { top: 20%; left: 51%; }
+        .p-na { top: 32%; left: 18%; }
+        .p-middle-east { top: 40%; left: 62%; }
+        .p-africa { top: 58%; left: 54%; }
+        .p-sa { top: 68%; left: 32%; }
 
-        /* Using visuals of Guangzhou and China landscapes */
-        .slide:nth-child(1) { 
-            background-image: url('https://images.unsplash.com/photo-1547984609-44d47d05720a?q=80&w=2000'); 
-            animation-delay: 0s; 
+        /* Passport Stamp (Currently Traveling) */
+        .passport-stamp {
+            position: absolute; bottom: 20px; left: 20px; width: 165px; height: 165px;
+            border: 1px solid #c5d5c5; border-radius: 50%; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; transform: rotate(-10deg); background: rgba(255,255,255,0.4); backdrop-filter: blur(2px);
         }
-        .slide:nth-child(2) { 
-            background-image: url('https://images.unsplash.com/photo-1525648199074-cee30ba79a4a?q=80&w=2000'); 
-            animation-delay: 6s; 
-        }
-        .slide:nth-child(3) { 
-            background-image: url('https://images.unsplash.com/photo-1504109586057-7a2ae83d1338?q=80&w=2000'); 
-            animation-delay: 12s; 
-        }
+        .stamp-cur { font-family: 'Mrs Saint Delafield', cursive; font-size: 28px; color: #8fa18f; }
+        .stamp-loc { border: 1px solid #8fa18f; padding: 5px 16px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; margin-top: 6px; color: #8fa18f; font-weight: 600; }
 
-        @keyframes slideAnimation {
-            0% { opacity: 0; transform: scale(1); }
-            10% { opacity: 1; }
-            33% { opacity: 1; }
-            43% { opacity: 0; transform: scale(1.08); }
-            100% { opacity: 0; }
-        }
+        /* --- POPULAR DESTINATIONS GRID --- */
+        .popular-section { max-width: 1300px; margin: 100px auto 40px; padding: 0 40px; text-align: center; }
+        .sec-title { font-family: 'Playfair Display', serif; font-size: 30px; letter-spacing: 6px; text-transform: uppercase; color: #666; margin-bottom: 70px; font-weight: 400; }
+        
+        .popular-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 35px; }
+        .pop-card { background: #fff; border: 1px solid #f2f2f2; padding: 25px; transition: 0.4s ease; display: block; }
+        .pop-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+        .pop-card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; display: block; }
+        
+        .pop-label { background: #cdc1b4; color: #fff; width: 85%; margin: -25px auto 0; padding: 14px 0; position: relative; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; border: 1px solid #fff; z-index: 2; font-weight: 500; }
+        .pop-ornament { margin-top: 20px; font-size: 16px; color: #cdc1b4; opacity: 0.6; }
 
-        .dest-hero-box {
-            position: relative; z-index: 10;
-            background: rgba(255, 255, 255, 0.94); padding: 60px 80px;
-            text-align: center; max-width: 800px; border: 1px solid #eee;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-        }
-        .dest-hero-box .tag { font-size: 10px; letter-spacing: 5px; text-transform: uppercase; color: #999; margin-bottom: 15px; display: block; }
-        .dest-hero-box h2 { font-family: 'Playfair Display', serif; font-size: 40px; font-weight: 400; margin: 0 0 20px; }
-        .dest-hero-box p { font-size: 14px; color: #666; margin-bottom: 30px; }
-
-        /* --- CONTINENT GRID --- */
-        .line-header { display: flex; align-items: center; justify-content: center; margin: 80px auto 50px; max-width: 1300px; padding: 0 40px; }
-        .line { flex: 1; height: 1px; background: #eee; }
-        .header-title { font-family: 'Playfair Display', serif; font-size: 22px; margin: 0 30px; letter-spacing: 3px; text-transform: uppercase; }
-
-        .continents-container {
-            display: grid; grid-template-columns: repeat(2, 1fr);
-            max-width: 1300px; margin: 0 auto 100px; gap: 30px; padding: 0 40px;
-        }
-        .continent-item {
-            position: relative; height: 500px; overflow: hidden;
-            display: flex; align-items: center; justify-content: center;
-        }
-        .continent-img {
-            width: 100%; height: 100%; object-fit: cover;
-            transition: transform 1.5s ease;
-        }
-        .continent-item:hover .continent-img { transform: scale(1.05); }
-        .continent-label {
-            position: absolute; background: rgba(255, 255, 255, 0.9);
-            padding: 15px 40px; font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
-            z-index: 2;
-        }
-
-        /* --- FOOTER --- */
-        .site-footer { background-color: #f9f8f6; padding: 80px 60px; border-top: 1px solid #f2f2f2; margin-top: 100px; }
-        .footer-container { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; max-width: 1200px; margin: 0 auto; gap: 40px; }
-        .footer-column h4 { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 400; margin-bottom: 20px; }
-        .footer-column ul { list-style: none; padding: 0; }
-        .footer-column li { margin-bottom: 10px; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; }
-
-        @media (max-width: 900px) {
-            .continents-container { grid-template-columns: 1fr; }
-            .footer-container { grid-template-columns: 1fr; text-align: center; }
-            .dest-hero-box { padding: 40px; margin: 20px; }
+        /* --- MOBILE RESPONSIVENESS --- */
+        @media (max-width: 1024px) {
+            .map-section { flex-direction: column; }
+            .map-sidebar { width: 100%; border: none; border-bottom: 1px solid #f2f2f2; padding: 20px; }
+            .popular-grid { grid-template-columns: 1fr; }
+            .explore-bar { flex-direction: column; align-items: stretch; }
+            .map-wrapper { min-height: 450px; }
+            .pin-card img { width: 90px; height: 90px; }
         }
     </style>
 </head>
 <body>
 
-    <header class="site-header">
-        <h1 class="site-title">Renata Oliveira</h1>
-    </header>
-
-    <nav class="main-nav">
-        <ul class="nav-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Travel</a></li>
-            <li><a href="#">Beauty</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </nav>
-
-    <section class="dest-hero">
-        <div class="hero-slideshow">
-            <div class="slide"></div>
-            <div class="slide"></div>
-            <div class="slide"></div>
+    <div class="explore-bar">
+        <div class="filter-item">
+            <select onchange="location = this.value;">
+                <option value="#">By Destination</option>
+                <option value="/africa">Africa</option>
+                <option value="/asia">Asia</option>
+                <option value="/europe">Europe</option>
+                <option value="/north-america">North America</option>
+                <option value="/south-america">South America</option>
+            </select>
         </div>
-
-        <div class="dest-hero-box">
-            <span class="tag">Next Destination | April 2026</span>
-            <h2>Exploring China</h2>
-            <p>From the futuristic skyline of Guangzhou to the ancient allure of the Silk Road, follow my journey as I document the diverse landscapes of China this spring.</p>
-            <a href="#" style="font-size: 11px; letter-spacing: 2px; border-bottom: 1px solid #333; padding-bottom: 5px; font-weight: 600; text-transform: uppercase;">View Itinerary</a>
+        <div class="filter-item">
+            <form action="/search" method="get" style="display:flex; align-items:center;">
+                <input type="text" name="s" placeholder="Search the site...">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
         </div>
-    </section>
-
-    <div class="line-header">
-        <span class="line"></span>
-        <h2 class="header-title">The Continents</h2>
-        <span class="line"></span>
     </div>
 
-    <section class="continents-container">
-        <div class="continent-item">
-            <img src="https://images.unsplash.com/photo-1464817739973-0128fe79aa1b?q=80&w=800" class="continent-img">
-            <div class="continent-label">Asia</div>
-        </div>
-        <div class="continent-item">
-            <img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?q=80&w=800" class="continent-img">
-            <div class="continent-label">Europe</div>
-        </div>
-        <div class="continent-item">
-            <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?q=80&w=800" class="continent-img">
-            <div class="continent-label">North America</div>
-        </div>
-        <div class="continent-item">
-            <img src="https://images.unsplash.com/photo-1483729558449-99ef09a8c325?q=80&w=800" class="continent-img">
-            <div class="continent-label">South America</div>
-        </div>
-        <div class="continent-item">
-            <img src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?q=80&w=800" class="continent-img">
-            <div class="continent-label">Africa</div>
-        </div>
-        <div class="continent-item">
-            <img src="https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?q=80&w=800" class="continent-img">
-            <div class="continent-label">Oceania</div>
+    <section class="map-section">
+        <aside class="map-sidebar">
+            <span class="sidebar-title">Click to Expand</span>
+            <ul class="dest-list">
+                <li><a href="/africa"><span>1</span> Africa</a></li>
+                <li><a href="/asia"><span>2</span> Asia</a></li>
+                <li><a href="/caribbean"><span>3</span> The Caribbean</a></li>
+                <li><a href="/central-america"><span>4</span> Central America</a></li>
+                <li><a href="/europe"><span>5</span> Europe</a></li>
+                <li><a href="/middle-east"><span>6</span> The Middle East</a></li>
+                <li><a href="/north-america"><span>7</span> North America</a></li>
+                <li><a href="/oceania"><span>8</span> Oceania</a></li>
+                <li><a href="/south-america"><span>9</span> South America</a></li>
+            </ul>
+        </aside>
+
+        <div class="map-wrapper">
+            
+            <a href="/asia" class="map-pin p-asia">
+                <div class="pin-num">2</div>
+                <div class="pin-card">
+                    <img src="./thailand.jpg">
+                    <span>Asia</span>
+                </div>
+            </a>
+
+            <a href="/europe" class="map-pin p-europe">
+                <div class="pin-num">5</div>
+                <div class="pin-card">
+                    <img src="./paris.jpg">
+                    <span>Europe</span>
+                </div>
+            </a>
+
+            <a href="/north-america" class="map-pin p-na">
+                <div class="pin-num">7</div>
+                <div class="pin-card">
+                    <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?q=80&w=300">
+                    <span>North America</span>
+                </div>
+            </a>
+
+            <a href="/middle-east" class="map-pin p-middle-east">
+                <div class="pin-num">7</div>
+                <div class="pin-card">
+                    <img src="./petra.JPG">
+                    <span>Middle East</span>
+                </div>
+            </a>
+
+            <div class="passport-stamp">
+                <span class="stamp-cur">Currently Traveling in:</span>
+                <div class="stamp-loc">New York</div>
+            </div>
         </div>
     </section>
 
-    <footer class="site-footer">
-        <div class="footer-container">
-            <div class="footer-column">
-                <h2 style="font-family: 'Playfair Display'; letter-spacing: 4px; text-transform: uppercase; margin: 0;">Renata</h2>
-                <p style="font-family: 'Playfair Display'; font-style: italic; color: #777;">Travel & Beauty Influencer</p>
-            </div>
-            <div class="footer-column">
-                <h4>Explore</h4>
-                <ul><li>Blog</li><li>Shop</li><li>Destinations</li></ul>
-            </div>
-            <div class="footer-column">
-                <h4>Information</h4>
-                <ul><li>Privacy Policy</li><li>Terms of Use</li><li>Contact</li></ul>
-            </div>
-            <div class="footer-column">
-                <h4>Social</h4>
-                <ul><li>Instagram</li><li>TikTok</li><li>Pinterest</li></ul>
-            </div>
+    <section class="popular-section">
+        <h2 class="sec-title">Browse by Popular Destinations</h2>
+        <div class="popular-grid">
+            
+            <a href="./paris.jpg" class="pop-card">
+                <img src="./paris.jpg">
+                <div class="pop-label">Paris</div>
+                <div class="pop-ornament"><i class="fas fa-seedling"></i></div>
+            </a>
+
+            <a href="./dubai.JPG" class="pop-card">
+                <img src="./dubai.JPG">
+                <div class="pop-label">Dubai</div>
+                <div class="pop-ornament"><i class="fas fa-seedling"></i></div>
+            </a>
+
+            <a href="./greece.jpg" class="pop-card">
+                <img src="./greece.jpg">
+                <div class="pop-label">Greece</div>
+                <div class="pop-ornament"><i class="fas fa-seedling"></i></div>
+            </a>
+
         </div>
-    </footer>
+    </section>
 
 </body>
 </html>
