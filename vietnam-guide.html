@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Renata Oliveira | Asia Travel Hub</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* --- GLOBAL & PASTEL STYLES --- */
+        * { box-sizing: border-box; }
+        body { margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; color: #444; background-color: #fff; line-height: 1.8; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; cursor: pointer; }
+        
+        /* Pastel Palette */
+        .bg-pink { background-color: #fff0f5; }
+        .bg-peach { background-color: #fdfaf5; }
+        .text-lavender { color: #c3a1e2; }
+
+        /* --- TOP BAR --- */
+        .top-bar {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 12px 40px; font-size: 10px; letter-spacing: 2.5px;
+            text-transform: uppercase; background-color: #fff0f5; border-bottom: 1px solid #f2f2f2;
+        }
+
+        /* --- BRANDING --- */
+        .site-header { padding: 50px 0 35px; text-align: center; }
+        .site-title { font-family: 'Playfair Display', serif; font-size: 50px; letter-spacing: 12px; text-transform: uppercase; margin: 0; }
+
+        /* --- NAVIGATION & ASIA DROPDOWN --- */
+        .main-nav {
+            border-top: 1px solid #f2f2f2; border-bottom: 1px solid #f2f2f2;
+            padding: 16px 0; text-align: center; position: sticky; top: 0;
+            background-color: #fdfaf5; z-index: 1000;
+        }
+        .nav-links { margin: 0; padding: 0; list-style: none; display: flex; justify-content: center; }
+        .nav-links > li { position: relative; margin: 0 25px; font-size: 11px; letter-spacing: 3px; font-weight: 500; text-transform: uppercase; }
+
+        /* Dropdown Logic */
+        .submenu {
+            display: none; position: absolute; top: 100%; left: 50%;
+            transform: translateX(-50%); background: white; min-width: 220px;
+            border: 1px solid #f2f2f2; padding: 20px 0; margin-top: 15px;
+            z-index: 2000; text-align: left; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        .dropdown:hover .submenu { display: block; }
+        .submenu li { display: block; padding: 8px 25px; }
+        .submenu li a { font-size: 10px; letter-spacing: 2px; color: #333; }
+        .submenu li:hover { background-color: #fff0f5; }
+
+        /* --- HUB CONTENT --- */
+        .post-hero { height: 65vh; background-image: url('https://images.unsplash.com/photo-1528127269322-539801943592?q=80&w=2000'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; }
+        .hero-overlay { background: rgba(255, 255, 255, 0.98); padding: 50px 70px; text-align: center; max-width: 750px; border: 1px solid #f2f2f2; }
+        .hero-overlay h1 { font-family: 'Playfair Display', serif; font-size: 46px; font-weight: 400; margin: 15px 0; }
+
+        .hub-section { max-width: 1100px; margin: 100px auto; padding: 0 40px; }
+        .hub-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; margin-bottom: 100px; }
+        .hub-text h2 { font-family: 'Playfair Display', serif; font-size: 34px; font-weight: 400; color: #333; margin-bottom: 25px; }
+        .hub-image img { width: 100%; border: 12px solid #fff0f5; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
+
+        /* City Grid */
+        .city-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; margin-top: 60px; }
+        .city-card { position: relative; height: 380px; overflow: hidden; display: block; }
+        .city-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
+        .city-card:hover img { transform: scale(1.08); }
+        .city-card-overlay { position: absolute; bottom: 25px; left: 25px; right: 25px; background: white; padding: 18px; text-align: center; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-weight: 600; }
+
+        .line-header { display: flex; align-items: center; justify-content: center; margin-bottom: 50px; }
+        .line { flex: 1; height: 1px; background: #eee; }
+        .header-title { font-family: 'Playfair Display', serif; font-size: 24px; margin: 0 30px; letter-spacing: 4px; text-transform: uppercase; }
+
+        @media (max-width: 768px) { .hub-grid, .city-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div>Travel · Beauty · Style · Living</div>
+        <div class="top-socials"><a href="#"><i class="fab fa-instagram"></i></a> <a href="#"><i class="fab fa-tiktok"></i></a></div>
+    </div>
+
+    <header class="site-header">
+        <h1 class="site-title">Renata Oliveira</h1>
+    </header>
+
+    <nav class="main-nav">
+        <ul class="nav-links">
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="#">ABOUT</a></li>
+            <li class="dropdown">
+                <a href="#">ASIA <i class="fas fa-chevron-down" style="font-size: 8px; margin-left: 5px;"></i></a>
+                <ul class="submenu">
+                    <li><a href="vietnam-guide.html">VIETNAM HUB</a></li>
+                    <li><a href="#">CHINA (COMING SOON)</a></li>
+                    <li><a href="#">JAPAN (COMING SOON)</a></li>
+                </ul>
+            </li>
+            <li><a href="#">SHOP</a></li>
+            <li><a href="#">CONTACT</a></li>
+        </ul>
+    </nav>
+
+    <section class="post-hero">
+        <div class="hero-overlay">
+            <span class="text-lavender" style="letter-spacing: 5px; font-size: 10px; text-transform: uppercase;">Exploring the East</span>
+            <h1>The Vietnam Hub</h1>
+            <p style="font-style: italic; color: #888;">Discover why this corner of Asia is a traveler's paradise.</p>
+        </div>
+    </section>
+
+    <div class="hub-section">
+        <div class="hub-grid">
+            <div class="hub-text">
+                <h2>Why Vietnam?</h2>
+                <p>Vietnam is a tapestry of ancient history and breathtaking natural beauty. Whether you're cruising through the limestone pillars of Ha Long Bay or wandering the bustling streets of Hanoi, there's a magic here that captures the soul of every traveler.</p>
+            </div>
+            <div class="hub-image"><img src="https://images.unsplash.com/photo-1528127269322-539801943592?q=80&w=800"></div>
+        </div>
+
+        <div class="hub-grid">
+            <div class="hub-image" style="order: 2;"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=800"></div>
+            <div class="hub-text" style="order: 1;">
+                <h2>Food & Culture</h2>
+                <p>The culinary scene in Vietnam is legendary—street food that rivals fine dining and coffee culture like no other. Deeply influenced by its traditions, the culture is one of warmth, resilience, and incredible hospitality.</p>
+            </div>
+        </div>
+
+        <div class="line-header">
+            <span class="line"></span>
+            <h2 class="header-title">City Guides</h2>
+            <span class="line"></span>
+        </div>
+
+        <div class="city-grid">
+            <a href="hoian-guide.html" class="city-card">
+                <img src="https://images.unsplash.com/photo-1555661530-68c8e98db4e6?q=80&w=600">
+                <div class="city-card-overlay">Hoi An</div>
+            </a>
+            <a href="danang-guide.html" class="city-card">
+                <img src="https://images.unsplash.com/photo-1559592490-68a1f02f23b7?q=80&w=600">
+                <div class="city-card-overlay">Da Nang</div>
+            </a>
+            <a href="hanoi-guide.html" class="city-card">
+                <img src="https://images.unsplash.com/photo-1509030450996-93f2e3d5323a?q=80&w=600">
+                <div class="city-card-overlay">Hanoi</div>
+            </a>
+        </div>
+    </div>
+
+    <footer class="bg-peach" style="padding: 40px; text-align: center; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; border-top: 1px solid #f2f2f2;">
+        © 2026 Renata Oliveira · Social Media Magic Maker
+    </footer>
+
+</body>
+</html>
