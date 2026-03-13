@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Renata Oliveira | Travel & Beauty Influencer</title>
+    <title>Destinations | Renata Oliveira</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
-        /* --- GLOBAL STYLES --- */
+        /* --- CORE STYLES --- */
         * { box-sizing: border-box; }
         body {
             margin: 0; padding: 0;
@@ -20,201 +19,115 @@
             color: #333; background-color: #fff;
             line-height: 1.8;
         }
-        a { text-decoration: none; color: inherit; transition: 0.3s; cursor: pointer; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
         a:hover { opacity: 0.6; }
 
-        /* --- TOP BAR --- */
-        .top-bar {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 12px 40px; font-size: 10px; letter-spacing: 2.5px;
-            border-bottom: 1px solid #f2f2f2; text-transform: uppercase;
-        }
-        .top-categories a { margin-right: 25px; font-weight: 500; }
-        .top-socials a { margin-left: 18px; font-size: 13px; color: #111; }
-
-        /* --- LOGO --- */
+        /* --- HEADER & NAV --- */
         .site-header { padding: 60px 0 45px; text-align: center; }
         .site-title {
             font-family: 'Playfair Display', serif;
             font-size: 54px; letter-spacing: 12px; text-transform: uppercase; margin: 0; font-weight: 400;
         }
-
-        /* --- NAVIGATION --- */
         .main-nav {
             border-top: 1px solid #f2f2f2; border-bottom: 1px solid #f2f2f2;
             padding: 18px 0; text-align: center; position: sticky; top: 0;
             background: white; z-index: 1000;
         }
         .nav-links { margin: 0; padding: 0; list-style: none; display: flex; justify-content: center; }
-        .nav-links > li { position: relative; margin: 0 25px; font-size: 11px; letter-spacing: 3px; font-weight: 500; }
+        .nav-links > li { margin: 0 25px; font-size: 11px; letter-spacing: 3px; font-weight: 500; text-transform: uppercase;}
 
-        .submenu {
-            display: none; position: absolute; top: 100%; left: 50%;
-            transform: translateX(-50%); background: white; min-width: 230px;
-            border: 1px solid #f2f2f2; padding: 25px 0; margin-top: 15px;
-            z-index: 2000; text-align: left; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        /* --- MOVING HERO SECTION (Next Trip: China) --- */
+        .dest-hero {
+            position: relative; height: 75vh; width: 100%;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden;
+            background-color: #000;
         }
-        .submenu.show { display: block; }
-        .submenu li { display: block; position: relative; padding: 8px 25px; }
-        .submenu li a { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #333; display: flex; justify-content: space-between; align-items: center; }
-        
-        .has-second-level:hover .second-level-menu { display: block; }
-        .second-level-menu {
-            display: none; position: absolute; top: -20px; left: 100%;
-            background: white; min-width: 180px; border: 1px solid #f2f2f2;
-            padding: 15px 0; box-shadow: 10px 10px 30px rgba(0,0,0,0.05);
-        }
-        .arrow { font-size: 14px; margin-left: 10px; }
 
-        /* --- HERO --- */
-        .hero { padding: 0; max-width: 100%; margin: 0 auto; position: relative; }
-        .hero-container {
-            width: 100%; height: 85vh;
-            background-image: url('https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=2000');
+        .hero-slideshow {
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 1;
+        }
+
+        .slide {
+            position: absolute; width: 100%; height: 100%;
             background-size: cover; background-position: center;
-            position: relative; transition: background-image 1s ease-in-out;
+            opacity: 0;
+            animation: slideAnimation 18s infinite;
         }
-        .hero-box {
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            background: rgba(255, 255, 255, 0.96); padding: 60px 80px;
-            width: 90%; max-width: 800px; text-align: center;
-            border: 1px solid #eee; box-shadow: 0 20px 50px rgba(0,0,0,0.05); z-index: 10;
-        }
-        .hero-box .cat { font-size: 10px; letter-spacing: 5px; text-transform: uppercase; color: #999; margin-bottom: 20px; display: block; }
-        .hero-box h2 { font-family: 'Playfair Display', serif; font-size: 44px; font-weight: 400; margin: 0 0 25px; line-height: 1.2; }
-        .hero-box p { font-size: 14px; color: #666; margin-bottom: 35px; max-width: 500px; margin-left: auto; margin-right: auto; }
-        .btn-read-more { background: #111; color: #fff; padding: 15px 45px; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; border: none; }
 
-        /* --- CATEGORY TRIPLE GRID --- */
-        .category-triple {
-            display: grid; grid-template-columns: repeat(3, 1fr);
-            max-width: 1300px; margin: 100px auto 60px; gap: 20px; padding: 0 40px;
+        /* Using visuals of Guangzhou and China landscapes */
+        .slide:nth-child(1) { 
+            background-image: url('https://images.unsplash.com/photo-1547984609-44d47d05720a?q=80&w=2000'); 
+            animation-delay: 0s; 
         }
-        .triple-item {
-            height: 450px; background-size: cover; background-position: center;
-            position: relative; display: flex; align-items: center; justify-content: center;
+        .slide:nth-child(2) { 
+            background-image: url('https://images.unsplash.com/photo-1525648199074-cee30ba79a4a?q=80&w=2000'); 
+            animation-delay: 6s; 
         }
-        .triple-label { background: rgba(255, 255, 255, 0.9); padding: 15px 50px; font-size: 12px; letter-spacing: 4px; text-transform: uppercase; }
+        .slide:nth-child(3) { 
+            background-image: url('https://images.unsplash.com/photo-1504109586057-7a2ae83d1338?q=80&w=2000'); 
+            animation-delay: 12s; 
+        }
 
-        /* --- MAIN CONTENT & SIDEBAR --- */
-        .content-wrapper { display: flex; max-width: 1250px; margin: 80px auto; padding: 0 40px; gap: 80px; }
-        .main-content { flex: 1; }
-        .sidebar { width: 300px; flex-shrink: 0; text-align: center; }
-        .line-header { display: flex; align-items: center; justify-content: center; margin-bottom: 50px; }
+        @keyframes slideAnimation {
+            0% { opacity: 0; transform: scale(1); }
+            10% { opacity: 1; }
+            33% { opacity: 1; }
+            43% { opacity: 0; transform: scale(1.08); }
+            100% { opacity: 0; }
+        }
+
+        .dest-hero-box {
+            position: relative; z-index: 10;
+            background: rgba(255, 255, 255, 0.94); padding: 60px 80px;
+            text-align: center; max-width: 800px; border: 1px solid #eee;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+        .dest-hero-box .tag { font-size: 10px; letter-spacing: 5px; text-transform: uppercase; color: #999; margin-bottom: 15px; display: block; }
+        .dest-hero-box h2 { font-family: 'Playfair Display', serif; font-size: 40px; font-weight: 400; margin: 0 0 20px; }
+        .dest-hero-box p { font-size: 14px; color: #666; margin-bottom: 30px; }
+
+        /* --- CONTINENT GRID --- */
+        .line-header { display: flex; align-items: center; justify-content: center; margin: 80px auto 50px; max-width: 1300px; padding: 0 40px; }
         .line { flex: 1; height: 1px; background: #eee; }
         .header-title { font-family: 'Playfair Display', serif; font-size: 22px; margin: 0 30px; letter-spacing: 3px; text-transform: uppercase; }
 
-        /* --- CURRENTLY LOVING --- */
-        .loving-section { max-width: 1300px; margin: 80px auto; padding: 0 40px; text-align: center; }
-        .loving-grid { display: flex; align-items: center; justify-content: space-between; margin-top: 40px; gap: 20px; }
-        .loving-item { flex: 1; text-align: center; }
-        .loving-item img { width: 100%; height: auto; transition: 0.3s; }
-
-        /* --- INSTAGRAM FOOTER --- */
-        .insta-footer {
-            background-color: #f2dbd5; 
-            padding: 80px 0 0 0;
-            text-align: center;
-            margin-top: 100px;
+        .continents-container {
+            display: grid; grid-template-columns: repeat(2, 1fr);
+            max-width: 1300px; margin: 0 auto 100px; gap: 30px; padding: 0 40px;
         }
-        .insta-footer h2 {
-            font-family: 'Mrs Saint Delafield', cursive;
-            font-size: 90px;
-            color: #666;
-            margin: 0 0 -20px 0;
-            font-weight: 400;
+        .continent-item {
+            position: relative; height: 500px; overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
         }
-        .insta-grid-white-box {
-            background: #fff;
-            padding: 40px 20px;
-            max-width: 100%;
+        .continent-img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 1.5s ease;
         }
-        .insta-carousel { 
-            display: grid; 
-            grid-template-columns: repeat(5, 1fr); 
-            max-width: 1400px; 
-            margin: 0 auto;
-        }
-        .insta-img { 
-            aspect-ratio: 1/1; 
-            background-size: cover; 
-            background-position: center; 
-            border: 3px solid #fff; 
+        .continent-item:hover .continent-img { transform: scale(1.05); }
+        .continent-label {
+            position: absolute; background: rgba(255, 255, 255, 0.9);
+            padding: 15px 40px; font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+            z-index: 2;
         }
 
-        /* --- FOOTER & LOGO BRANDING --- */
-        .site-footer { 
-            background-color: #f9f8f6; 
-            padding: 80px 60px; 
-            color: #333; 
-            border-top: 1px solid #f2f2f2; 
-        }
-        .footer-container { 
-            display: grid; 
-            grid-template-columns: 1.5fr 1fr 1fr 1fr; 
-            max-width: 1200px; 
-            margin: 0 auto; 
-            gap: 40px;
-            position: relative;
-        }
-        .footer-column h4 { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 400; margin: 0 0 25px; }
-        .footer-column ul { list-style: none; padding: 0; margin: 0; }
-        .footer-column li { margin-bottom: 12px; }
-        .footer-column a { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 500; }
+        /* --- FOOTER --- */
+        .site-footer { background-color: #f9f8f6; padding: 80px 60px; border-top: 1px solid #f2f2f2; margin-top: 100px; }
+        .footer-container { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; max-width: 1200px; margin: 0 auto; gap: 40px; }
+        .footer-column h4 { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 400; margin-bottom: 20px; }
+        .footer-column ul { list-style: none; padding: 0; }
+        .footer-column li { margin-bottom: 10px; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; }
 
-        /* --- CSS FOR LOGO TRANSPARENCY & STYLE --- */
-        .transparent-logo {
-            background-color: transparent !important;
-            border: none !important;
-            display: block;
-            margin: 0 auto;
-        }
-
-        .footer-branding-overlay {
-            position: absolute;
-            right: -20px;
-            bottom: -20px;
-            width: 280px;
-            pointer-events: none;
-            z-index: 5;
-        }
-        .footer-branding-overlay img {
-            width: 100%;
-            height: auto;
-            opacity: 0.85;
-            transform: rotate(4deg);
-            background: transparent; /* Ensures no background bleed */
-        }
-
-        .bottom-footer { background-color: #fcfcfc; padding: 30px 60px; border-top: 1px solid #f2f2f2; }
-        .bottom-footer-container {
-            max-width: 1300px; margin: 0 auto; display: flex; justify-content: space-between;
-            align-items: center; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #555;
-        }
-
-        @media (max-width: 1024px) {
-            .footer-container, .category-triple { grid-template-columns: 1fr; }
-            .content-wrapper { flex-direction: column; }
-            .insta-carousel { grid-template-columns: repeat(2, 1fr); }
-            .bottom-footer-container { flex-direction: column; gap: 20px; }
-            .footer-branding-overlay { position: relative; right: auto; bottom: auto; margin: 40px auto 0; text-align: center; }
+        @media (max-width: 900px) {
+            .continents-container { grid-template-columns: 1fr; }
+            .footer-container { grid-template-columns: 1fr; text-align: center; }
+            .dest-hero-box { padding: 40px; margin: 20px; }
         }
     </style>
 </head>
 <body>
-
-    <div class="top-bar">
-        <div class="top-categories">
-            <a href="#">Style</a> <a href="#">Living</a> <a href="#">Travel</a> <a href="#">Beauty</a>
-        </div>
-        <div class="top-socials">
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-pinterest-p"></i></a>
-            <a href="#"><i class="fab fa-tiktok"></i></a>
-            <a href="#"><i class="fas fa-search"></i></a>
-        </div>
-    </div>
 
     <header class="site-header">
         <h1 class="site-title">Renata Oliveira</h1>
@@ -222,156 +135,82 @@
 
     <nav class="main-nav">
         <ul class="nav-links">
-            <li><a href="#">HOME</a></li>
-            <li><a href="#">ABOUT</a></li>
-            <li class="dropdown">
-                <a class="drop-trigger" onclick="toggleMenu('templateSubmenu', event)">Asia</a>
-                <ul class="submenu" id="templateSubmenu">
-                    <li><a href="#">Thailand</a></li>
-                    <li><a href="./vietnam-guide.html">Vietnam</a></li>
-                    <li><a href="#">Japan</a></li>
-                    <li><a href="#">Hong Kong</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a class="drop-trigger" onclick="toggleMenu('featuresSubmenu', event)">FEATURES</a>
-                <ul class="submenu" id="featuresSubmenu">
-                    <li class="has-second-level">
-                        <a href="#">BLOG LAYOUTS <span class="arrow">›</span></a>
-                        <ul class="second-level-menu">
-                            <li><a href="#">GRID LAYOUT</a></li>
-                            <li><a href="#">LIST LAYOUT</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">SHOP THE POST</a></li>
-                </ul>
-            </li>
-            <li><a href="#">SHOP</a></li>
-            <li><a href="#">CONTACT</a></li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Travel</a></li>
+            <li><a href="#">Beauty</a></li>
+            <li><a href="#">Contact</a></li>
         </ul>
     </nav>
 
-    <section class="hero">
-        <div class="hero-container" id="heroBg">
-            <div class="hero-box">
-                <span class="cat">Living</span>
-                <h2>Minimalist Morning Routines</h2>
-                <p>Curating a life of intention, one morning at a time.</p>
-                <a href="#" class="btn-read-more">Read More</a>
-            </div>
+    <section class="dest-hero">
+        <div class="hero-slideshow">
+            <div class="slide"></div>
+            <div class="slide"></div>
+            <div class="slide"></div>
+        </div>
+
+        <div class="dest-hero-box">
+            <span class="tag">Next Destination | April 2026</span>
+            <h2>Exploring China</h2>
+            <p>From the futuristic skyline of Guangzhou to the ancient allure of the Silk Road, follow my journey as I document the diverse landscapes of China this spring.</p>
+            <a href="#" style="font-size: 11px; letter-spacing: 2px; border-bottom: 1px solid #333; padding-bottom: 5px; font-weight: 600; text-transform: uppercase;">View Itinerary</a>
         </div>
     </section>
 
-    <section class="category-triple">
-        <div class="triple-item" style="background-image: url('https://images.unsplash.com/photo-1490481651871-ab68624d5517?q=80&w=800');"><div class="triple-label">Style</div></div>
-        <div class="triple-item" style="background-image: url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=800');"><div class="triple-label">Travel</div></div>
-        <div class="triple-item" style="background-image: url('https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=800');"><div class="triple-label">Living</div></div>
-    </section>
-
-    <div class="content-wrapper">
-        <div class="main-content">
-            <div class="line-header"><span class="line"></span><h2 class="header-title">The Latest</h2><span class="line"></span></div>
-            <article style="text-align:center;">
-                <img src="./banner.png" style="width:100%; margin-bottom:20px;">
-                <h2 style="font-family:'Playfair Display'; font-size:36px; font-weight:400;">Slow Mornings in Paris</h2>
-                <a href="#" style="font-size: 11px; letter-spacing: 2px; border-bottom: 1px solid #333; padding-bottom: 5px; font-weight: 600; text-transform: uppercase;">Read More</a>
-            </article>
-        </div>
-        <aside class="sidebar">
-            <img src="logo.png" alt="Renata's Passport" class="transparent-logo" style="width: 180px; margin-bottom: 20px; opacity: 0.9;">
-            <div class="line-header"><span class="line"></span><h2 class="header-title" style="font-size: 14px;">The Author</h2><span class="line"></span></div>
-            <img src="./profile.PNG" style="width:220px; height:220px; border-radius:50%; object-fit:cover; margin-bottom:25px;">
-            <p style="font-family: 'Playfair Display', serif; font-style: italic; color: #666;">I'm Renata, documenting my journeys across 140+ countries.</p>
-        </aside>
+    <div class="line-header">
+        <span class="line"></span>
+        <h2 class="header-title">The Continents</h2>
+        <span class="line"></span>
     </div>
 
-    <section class="loving-section">
-        <div class="line-header"><span class="line"></span><h2 class="header-title">Currently Loving</h2><span class="line"></span></div>
-        <div class="loving-grid">
-            <div class="loving-item"><img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=400"></div>
-            <div class="loving-item"><img src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?q=80&w=400"></div>
-            <div class="loving-item"><img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=400"></div>
-            <div class="loving-item"><img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=400"></div>
+    <section class="continents-container">
+        <div class="continent-item">
+            <img src="https://images.unsplash.com/photo-1464817739973-0128fe79aa1b?q=80&w=800" class="continent-img">
+            <div class="continent-label">Asia</div>
         </div>
-    </section>
-
-    <section class="insta-footer">
-        <h2>Instagram</h2>
-        <div class="insta-grid-white-box">
-            <div class="insta-carousel">
-                <div class="insta-img" style="background-image: url('https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?q=80&w=400');"></div>
-                <div class="insta-img" style="background-image: url('https://images.unsplash.com/photo-1484101403633-562f891dc89a?q=80&w=400');"></div>
-                <div class="insta-img" style="background-image: url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=400');"></div>
-                <div class="insta-img" style="background-image: url('https://images.unsplash.com/photo-1512436030959-2ec6473187c3?q=80&w=400');"></div>
-                <div class="insta-img" style="background-image: url('https://images.unsplash.com/photo-1445205170230-053b83016050?q=80&w=400');"></div>
-            </div>
+        <div class="continent-item">
+            <img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?q=80&w=800" class="continent-img">
+            <div class="continent-label">Europe</div>
+        </div>
+        <div class="continent-item">
+            <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?q=80&w=800" class="continent-img">
+            <div class="continent-label">North America</div>
+        </div>
+        <div class="continent-item">
+            <img src="https://images.unsplash.com/photo-1483729558449-99ef09a8c325?q=80&w=800" class="continent-img">
+            <div class="continent-label">South America</div>
+        </div>
+        <div class="continent-item">
+            <img src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?q=80&w=800" class="continent-img">
+            <div class="continent-label">Africa</div>
+        </div>
+        <div class="continent-item">
+            <img src="https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?q=80&w=800" class="continent-img">
+            <div class="continent-label">Oceania</div>
         </div>
     </section>
 
     <footer class="site-footer">
         <div class="footer-container">
             <div class="footer-column">
-                <h2 style="font-family: 'Playfair Display'; letter-spacing: 4px; text-transform: uppercase;">Renata</h2>
-                <p style="font-family: 'Playfair Display'; font-style: italic; color: #777;">Influencer & Strategist</p>
-                <div style="font-size: 14px; margin-top: 15px;">
-                    <a href="#" style="margin-right: 15px;"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-tiktok"></i></a>
-                </div>
+                <h2 style="font-family: 'Playfair Display'; letter-spacing: 4px; text-transform: uppercase; margin: 0;">Renata</h2>
+                <p style="font-family: 'Playfair Display'; font-style: italic; color: #777;">Travel & Beauty Influencer</p>
             </div>
             <div class="footer-column">
                 <h4>Explore</h4>
-                <ul><li><a href="#">The Shop</a></li><li><a href="#">Blog</a></li><li><a href="#">Favorites</a></li></ul>
+                <ul><li>Blog</li><li>Shop</li><li>Destinations</li></ul>
             </div>
             <div class="footer-column">
-                <h4>Info</h4>
-                <ul><li><a href="#">Meet Renata</a></li><li><a href="#">Services</a></li><li><a href="#">Contact</a></li></ul>
+                <h4>Information</h4>
+                <ul><li>Privacy Policy</li><li>Terms of Use</li><li>Contact</li></ul>
             </div>
             <div class="footer-column">
-                <h4>Categories</h4>
-                <ul><li><a href="#">Style</a></li><li><a href="#">Living</a></li><li><a href="#">Travel</a></li></ul>
-            </div>
-
-            <div class="footer-branding-overlay">
-                <a href="#"><img src="./renatalogo.png" alt="Renata's Global Explorer Seal"></a>
+                <h4>Social</h4>
+                <ul><li>Instagram</li><li>TikTok</li><li>Pinterest</li></ul>
             </div>
         </div>
     </footer>
 
-    <div class="bottom-footer">
-        <div class="bottom-footer-container">
-            <div class="footer-legal"><a href="#">Privacy Policy</a> <a href="#">Disclosure</a></div>
-            <div class="footer-copyright">
-                <span>© 2026 Renata Oliveira · Designed by Renata Oliver</span>
-                <a href="#" style="margin-left: 20px;"><i class="fas fa-chevron-up"></i></a>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        function toggleMenu(menuId, event) {
-            event.preventDefault(); event.stopPropagation();
-            const allMenus = document.querySelectorAll('.submenu');
-            allMenus.forEach(m => { if(m.id !== menuId) m.classList.remove('show'); });
-            document.getElementById(menuId).classList.toggle("show");
-        }
-        window.onclick = function(event) {
-            if (!event.target.matches('.drop-trigger')) {
-                document.querySelectorAll('.submenu').forEach(m => m.classList.remove('show'));
-            }
-        }
-        let slideIdx = 0;
-        const imgs = [
-            'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=2000',
-            'https://images.unsplash.com/photo-1493128477676-4668bb5680d2?q=80&w=2000'
-        ];
-        function nextSlide() {
-            const heroBg = document.getElementById('heroBg');
-            if(heroBg) {
-                slideIdx = (slideIdx + 1) % imgs.length;
-                heroBg.style.backgroundImage = `url(${imgs[slideIdx]})`;
-            }
-        }
-        setInterval(nextSlide, 5000);
-    </script>
 </body>
 </html>
