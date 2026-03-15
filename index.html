@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Destinations | Renata Oliveira</title>
+    <title>Renata Oliveira | Official</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,203 +11,215 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
-        /* --- CORE STYLES --- */
+        /* --- GLOBAL STYLES --- */
         * { box-sizing: border-box; }
-        body {
-            margin: 0; padding: 0;
-            font-family: 'Montserrat', sans-serif;
-            color: #333; background-color: #fff;
-            line-height: 1.8;
-        }
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-        a:hover { opacity: 0.6; }
+        body { margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; color: #333; background-color: #fff; line-height: 1.8; overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; transition: 0.3s ease; }
+        a:hover { opacity: 0.7; }
 
-        /* --- HEADER & NAV --- */
-        .site-header { padding: 60px 0 45px; text-align: center; }
-        .site-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 54px; letter-spacing: 12px; text-transform: uppercase; margin: 0; font-weight: 400;
-        }
-        .main-nav {
-            border-top: 1px solid #f2f2f2; border-bottom: 1px solid #f2f2f2;
-            padding: 18px 0; text-align: center; position: sticky; top: 0;
-            background: white; z-index: 1000;
-        }
+        /* --- HEADER & TOP NAV --- */
+        .site-header { padding: 40px 0 20px; text-align: center; }
+        .top-cat-nav { margin-bottom: 30px; }
+        .top-cat-nav a { margin: 0 20px; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #999; }
+        .logo-area { display: flex; align-items: center; justify-content: center; position: relative; max-width: 1300px; margin: 0 auto; }
+        .site-title { font-family: 'Playfair Display', serif; font-size: 50px; letter-spacing: 12px; text-transform: uppercase; margin: 0; font-weight: 400; }
+        .search-trigger { position: absolute; right: 50px; font-size: 16px; color: #333; cursor: pointer; }
+
+        /* --- STICKY MAIN NAV --- */
+        .main-nav { border-top: 1px solid #f2f2f2; border-bottom: 1px solid #f2f2f2; padding: 18px 0; text-align: center; position: sticky; top: 0; background: white; z-index: 1000; margin-top: 30px; }
         .nav-links { margin: 0; padding: 0; list-style: none; display: flex; justify-content: center; }
-        .nav-links > li { margin: 0 25px; font-size: 11px; letter-spacing: 3px; font-weight: 500; text-transform: uppercase;}
+        .nav-links > li { position: relative; margin: 0 20px; font-size: 11px; letter-spacing: 3px; font-weight: 500; text-transform: uppercase; }
+        .submenu { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background: white; min-width: 200px; border: 1px solid #f2f2f2; padding: 15px 0; margin-top: 18px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .nav-links > li:hover .submenu { display: block; }
+        .submenu li a { font-size: 10px; letter-spacing: 2px; padding: 10px 25px; display: block; text-align: left; color: #777; }
+        .submenu li a:hover { background: #fafafa; padding-left: 30px; color: #000; }
 
-        /* --- MOVING HERO SECTION (Next Trip: China) --- */
-        .dest-hero {
-            position: relative; height: 75vh; width: 100%;
-            display: flex; align-items: center; justify-content: center;
-            overflow: hidden;
-            background-color: #000;
-        }
+        /* --- WORLD MAP --- */
+        .map-section { max-width: 1400px; margin: 60px auto; padding: 0 40px; }
+        .map-wrapper { position: relative; width: 100%; min-height: 650px; background: url('https://upload.wikimedia.org/wikipedia/commons/e/ec/World_map_blank_without_borders.svg') no-repeat center/contain; }
+        .map-pin { position: absolute; display: flex; flex-direction: column; align-items: center; transition: 0.4s ease; cursor: pointer; }
+        .map-pin:hover { transform: translateY(-10px); z-index: 100; }
+        .pin-num { background: #d4af37; color: #fff; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; border: 2px solid #fff; margin-bottom: -13px; z-index: 2; position: relative; }
+        .pin-card { background: #fff; padding: 8px; border: 1px solid #f2f2f2; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: center; }
+        .pin-card img { width: 110px; height: 110px; object-fit: cover; display: block; }
+        .pin-card span { font-size: 8px; letter-spacing: 2px; text-transform: uppercase; color: #999; margin-top: 8px; display: block; }
+        
+        .loc-great-wall { top: 31%; left: 83%; } .loc-petra { top: 38%; left: 61%; }
+        .loc-machu { top: 66%; left: 29%; } .loc-colosseum { top: 28%; left: 52%; }
 
-        .hero-slideshow {
-            position: absolute; top: 0; left: 0;
-            width: 100%; height: 100%;
-            z-index: 1;
-        }
-
-        .slide {
-            position: absolute; width: 100%; height: 100%;
-            background-size: cover; background-position: center;
-            opacity: 0;
-            animation: slideAnimation 18s infinite;
-        }
-
-        /* Using visuals of Guangzhou and China landscapes */
-        .slide:nth-child(1) { 
-            background-image: url('https://images.unsplash.com/photo-1547984609-44d47d05720a?q=80&w=2000'); 
-            animation-delay: 0s; 
-        }
-        .slide:nth-child(2) { 
-            background-image: url('https://images.unsplash.com/photo-1525648199074-cee30ba79a4a?q=80&w=2000'); 
-            animation-delay: 6s; 
-        }
-        .slide:nth-child(3) { 
-            background-image: url('https://images.unsplash.com/photo-1504109586057-7a2ae83d1338?q=80&w=2000'); 
-            animation-delay: 12s; 
-        }
-
-        @keyframes slideAnimation {
-            0% { opacity: 0; transform: scale(1); }
-            10% { opacity: 1; }
-            33% { opacity: 1; }
-            43% { opacity: 0; transform: scale(1.08); }
-            100% { opacity: 0; }
-        }
-
-        .dest-hero-box {
-            position: relative; z-index: 10;
-            background: rgba(255, 255, 255, 0.94); padding: 60px 80px;
-            text-align: center; max-width: 800px; border: 1px solid #eee;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-        }
-        .dest-hero-box .tag { font-size: 10px; letter-spacing: 5px; text-transform: uppercase; color: #999; margin-bottom: 15px; display: block; }
-        .dest-hero-box h2 { font-family: 'Playfair Display', serif; font-size: 40px; font-weight: 400; margin: 0 0 20px; }
-        .dest-hero-box p { font-size: 14px; color: #666; margin-bottom: 30px; }
-
-        /* --- CONTINENT GRID --- */
-        .line-header { display: flex; align-items: center; justify-content: center; margin: 80px auto 50px; max-width: 1300px; padding: 0 40px; }
+        /* --- COMPACT THE LATEST SECTION --- */
+        .recent-posts { max-width: 1000px; margin: 60px auto; padding: 0 40px; }
+        .line-header { display: flex; align-items: center; justify-content: center; margin-bottom: 40px; }
         .line { flex: 1; height: 1px; background: #eee; }
-        .header-title { font-family: 'Playfair Display', serif; font-size: 22px; margin: 0 30px; letter-spacing: 3px; text-transform: uppercase; }
+        .header-title { font-family: 'Playfair Display', serif; font-size: 18px; margin: 0 30px; letter-spacing: 3px; text-transform: uppercase; color: #555; }
+        
+        .posts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+        .post-card { display: block; position: relative; }
+        .post-img-wrapper { width: 100%; height: 240px; overflow: hidden; }
+        .post-img-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .post-card:hover .post-img-wrapper img { transform: scale(1.05); }
 
-        .continents-container {
-            display: grid; grid-template-columns: repeat(2, 1fr);
-            max-width: 1300px; margin: 0 auto 100px; gap: 30px; padding: 0 40px;
-        }
-        .continent-item {
-            position: relative; height: 500px; overflow: hidden;
-            display: flex; align-items: center; justify-content: center;
-        }
-        .continent-img {
-            width: 100%; height: 100%; object-fit: cover;
-            transition: transform 1.5s ease;
-        }
-        .continent-item:hover .continent-img { transform: scale(1.05); }
-        .continent-label {
-            position: absolute; background: rgba(255, 255, 255, 0.9);
-            padding: 15px 40px; font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
-            z-index: 2;
-        }
+        .post-text-box { background: #faf7f5; padding: 20px 15px; margin: -30px 10px 0; position: relative; z-index: 10; min-height: 150px; box-shadow: 0 5px 15px rgba(0,0,0,0.02); text-align: center; }
+        .post-text-box h3 { font-family: 'Playfair Display', serif; font-size: 15px; margin: 0 0 10px 0; font-weight: 400; color: #333; line-height: 1.3; }
+        .post-text-box p { font-size: 10.5px; color: #888; margin: 0; line-height: 1.5; }
 
-        /* --- FOOTER --- */
-        .site-footer { background-color: #f9f8f6; padding: 80px 60px; border-top: 1px solid #f2f2f2; margin-top: 100px; }
-        .footer-container { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; max-width: 1200px; margin: 0 auto; gap: 40px; }
-        .footer-column h4 { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 400; margin-bottom: 20px; }
-        .footer-column ul { list-style: none; padding: 0; }
-        .footer-column li { margin-bottom: 10px; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; }
+        /* --- AUTO-MOVING CAROUSEL --- */
+        .currently-loving { max-width: 1300px; margin: 80px auto; padding: 0 40px; text-align: center; overflow: hidden; }
+        .carousel-track { display: flex; gap: 60px; width: max-content; animation: scrollCarousel 40s linear infinite; margin-top: 40px; }
+        .carousel-track:hover { animation-play-state: paused; }
+        .shop-item img { max-height: 180px; object-fit: contain; }
+        @keyframes scrollCarousel { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        @media (max-width: 900px) {
-            .continents-container { grid-template-columns: 1fr; }
-            .footer-container { grid-template-columns: 1fr; text-align: center; }
-            .dest-hero-box { padding: 40px; margin: 20px; }
+        /* --- SLIM PINK INSTAGRAM SECTION --- */
+        .insta-footer { background-color: #f2dbd5; padding: 30px 0 0 0; text-align: center; margin-top: 60px; }
+        .insta-footer h2 { font-family: 'Mrs Saint Delafield', cursive; font-size: 60px; color: #666; margin: 0 0 -12px 0; position: relative; z-index: 5; font-weight: 400; }
+        .insta-grid-container { background: #fff; padding: 15px; border-top: 1px solid rgba(0,0,0,0.05); }
+        .insta-carousel { display: grid; grid-template-columns: repeat(5, 1fr); max-width: 1400px; margin: 0 auto; gap: 0; }
+        .insta-item { border: 3px solid #fff; aspect-ratio: 1/1; overflow: hidden; position: relative; }
+        .insta-item img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* --- 3-COLUMN PREMIUM FOOTER --- */
+        .site-footer { padding: 80px 40px; background-color: #fff; border-top: 1px solid #f2f2f2; }
+        .footer-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.5fr 1fr; gap: 60px; align-items: start; }
+        .footer-links ul { list-style: none; padding: 0; margin: 0; }
+        .footer-links li { font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 18px; color: #888; }
+        .footer-links .sub-link { margin-left: 20px; font-size: 10px; color: #aaa; }
+        .footer-newsletter p { font-size: 13px; color: #777; margin-bottom: 35px; line-height: 1.6; }
+        .footer-newsletter input { width: 100%; border: none; border-bottom: 1px solid #333; padding: 12px 0; font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; outline: none; margin-bottom: 25px; background: transparent; }
+        .btn-footer-signup { background: transparent; border: 1px solid #333; padding: 15px 45px; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: 0.3s; margin-top: 10px; }
+        .btn-footer-signup:hover { background: #333; color: #fff; }
+        .footer-branding { text-align: center; }
+        .footer-logo-img { width: 220px; margin-bottom: 15px; }
+        .footer-year { font-family: 'Playfair Display', serif; font-size: 42px; color: #333; margin: 0; }
+
+        @media (max-width: 1024px) {
+            .footer-container, .posts-grid, .insta-carousel { grid-template-columns: 1fr; text-align: center; }
+            .nav-links { display: none; }
         }
     </style>
 </head>
 <body>
 
     <header class="site-header">
-        <h1 class="site-title">Renata Oliveira</h1>
+        <div class="top-cat-nav">
+            <a href="#">Style</a> <a href="#">Living</a> <a href="#">Travel</a> <a href="#">Beauty</a>
+        </div>
+        <div class="logo-area">
+            <h1 class="site-title">Renata Oliveira</h1>
+            <i class="fas fa-search search-trigger"></i>
+        </div>
     </header>
 
     <nav class="main-nav">
         <ul class="nav-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Travel</a></li>
-            <li><a href="#">Beauty</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li>
+                <a href="guides.html">Destinations <i class="fas fa-chevron-down" style="font-size: 8px; margin-left: 5px;"></i></a>
+                <ul class="submenu">
+                    <li><a href="guides.html">Travel Guides</a></li>
+                    <li><a href="media-kit.html">Media Kit</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Features <i class="fas fa-chevron-down" style="font-size: 8px; margin-left: 5px;"></i></a>
+                <ul class="submenu">
+                    <li><a href="wonders.html">7 Wonders</a></li>
+                    <li><a href="shop.html">Shop My Look</a></li>
+                </ul>
+            </li>
+            <li><a href="contact.html">Contact</a></li>
         </ul>
     </nav>
 
-    <section class="dest-hero">
-        <div class="hero-slideshow">
-            <div class="slide"></div>
-            <div class="slide"></div>
-            <div class="slide"></div>
-        </div>
-
-        <div class="dest-hero-box">
-            <span class="tag">Next Destination | April 2026</span>
-            <h2>Exploring China</h2>
-            <p>From the futuristic skyline of Guangzhou to the ancient allure of the Silk Road, follow my journey as I document the diverse landscapes of China this spring.</p>
-            <a href="#" style="font-size: 11px; letter-spacing: 2px; border-bottom: 1px solid #333; padding-bottom: 5px; font-weight: 600; text-transform: uppercase;">View Itinerary</a>
+    <section class="map-section">
+        <div class="map-wrapper">
+            <a href="china.html" class="map-pin loc-great-wall">
+                <div class="pin-num">W</div>
+                <div class="pin-card"><img src="https://images.unsplash.com/photo-1508804185872-d7badad00f7d?q=80&w=200"><span>Great Wall</span></div>
+            </a>
+            <a href="jordan.html" class="map-pin loc-petra">
+                <div class="pin-num">W</div>
+                <div class="pin-card"><img src="https://images.unsplash.com/photo-1579606031801-90372864f770?q=80&w=200"><span>Petra</span></div>
+            </a>
+            <a href="italy.html" class="map-pin loc-colosseum">
+                <div class="pin-num">W</div>
+                <div class="pin-card"><img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?q=80&w=200"><span>Colosseum</span></div>
+            </a>
         </div>
     </section>
 
-    <div class="line-header">
-        <span class="line"></span>
-        <h2 class="header-title">The Continents</h2>
-        <span class="line"></span>
-    </div>
+    <section class="recent-posts">
+        <div class="line-header">
+            <span class="line"></span><h2 class="header-title">The Latest</h2><span class="line"></span>
+        </div>
+        <div class="posts-grid">
+            <a href="#" class="post-card">
+                <div class="post-img-wrapper"><img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=600"></div>
+                <div class="post-text-box"><h3>Instagrammable Morocco</h3><p>Curated tips for the blue doorways and views of Chefchaouen.</p></div>
+            </a>
+            <a href="#" class="post-card">
+                <div class="post-img-wrapper"><img src="https://images.unsplash.com/photo-1547984609-44d47d05720a?q=80&w=600"></div>
+                <div class="post-text-box"><h3>Countdown to China</h3><p>Prepping for country #139 with my April photography itinerary.</p></div>
+            </a>
+            <a href="#" class="post-card">
+                <div class="post-img-wrapper"><img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?q=80&w=600"></div>
+                <div class="post-text-box"><h3>Carry-On Essentials</h3><p>The 5 beauty products I never leave home without for a long flight.</p></div>
+            </a>
+        </div>
+    </section>
 
-    <section class="continents-container">
-        <div class="continent-item">
-            <img src="https://images.unsplash.com/photo-1464817739973-0128fe79aa1b?q=80&w=800" class="continent-img">
-            <div class="continent-label">Asia</div>
+    <section class="currently-loving">
+        <div class="line-header">
+            <span class="line"></span><h2 class="header-title">Currently Loving</h2><span class="line"></span>
         </div>
-        <div class="continent-item">
-            <img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?q=80&w=800" class="continent-img">
-            <div class="continent-label">Europe</div>
+        <div class="carousel-track">
+            <div class="shop-item"><img src="./dress.png"></div>
+            <div class="shop-item"><img src="./dress2.png"></div>
+            <div class="shop-item"><img src="./dress3.png"></div>
+            <div class="shop-item"><img src="./dress4.png"></div>
+            <div class="shop-item"><img src="./bag.png"></div>
+            <div class="shop-item"><img src="./sandals.png"></div>
         </div>
-        <div class="continent-item">
-            <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?q=80&w=800" class="continent-img">
-            <div class="continent-label">North America</div>
-        </div>
-        <div class="continent-item">
-            <img src="https://images.unsplash.com/photo-1483729558449-99ef09a8c325?q=80&w=800" class="continent-img">
-            <div class="continent-label">South America</div>
-        </div>
-        <div class="continent-item">
-            <img src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?q=80&w=800" class="continent-img">
-            <div class="continent-label">Africa</div>
-        </div>
-        <div class="continent-item">
-            <img src="https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?q=80&w=800" class="continent-img">
-            <div class="continent-label">Oceania</div>
+    </section>
+
+    <section class="insta-footer">
+        <h2>Instagram</h2>
+        <div class="insta-grid-container">
+            <div class="insta-carousel">
+                <div class="insta-item"><img src="https://images.unsplash.com/photo-1510972527921-ce03766a1cf1?q=80&w=400"></div>
+                <div class="insta-item"><img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?q=80&w=400"></div>
+                <div class="insta-item"><img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=400"></div>
+                <div class="insta-item"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=400"></div>
+                <div class="insta-item"><img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?q=80&w=400"></div>
+            </div>
         </div>
     </section>
 
     <footer class="site-footer">
         <div class="footer-container">
-            <div class="footer-column">
-                <h2 style="font-family: 'Playfair Display'; letter-spacing: 4px; text-transform: uppercase; margin: 0;">Renata</h2>
-                <p style="font-family: 'Playfair Display'; font-style: italic; color: #777;">Travel & Beauty Influencer</p>
+            <div class="footer-links">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="presets.html">Presets</a></li>
+                    <li class="sub-link"><a href="#">Work With Me</a></li>
+                    <li class="sub-link"><a href="#">Guest Author</a></li>
+                    <li><a href="faq.html">Faq</a></li>
+                </ul>
             </div>
-            <div class="footer-column">
-                <h4>Explore</h4>
-                <ul><li>Blog</li><li>Shop</li><li>Destinations</li></ul>
+            <div class="footer-newsletter">
+                <p>Join over 1 million people and get exclusive travel tips, giveaways and more!</p>
+                <form>
+                    <input type="text" placeholder="First Name">
+                    <input type="email" placeholder="Email Address">
+                    <button type="submit" class="btn-footer-signup">Sign Up</button>
+                </form>
             </div>
-            <div class="footer-column">
-                <h4>Information</h4>
-                <ul><li>Privacy Policy</li><li>Terms of Use</li><li>Contact</li></ul>
-            </div>
-            <div class="footer-column">
-                <h4>Social</h4>
-                <ul><li>Instagram</li><li>TikTok</li><li>Pinterest</li></ul>
+            <div class="footer-branding">
+                <img src="./renatalogo.png" class="footer-logo-img" alt="Branding Collage">
+                <div class="footer-year">2026</div>
             </div>
         </div>
     </footer>
