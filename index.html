@@ -14,83 +14,79 @@
         /* --- GLOBAL STYLES --- */
         * { box-sizing: border-box; }
         body { margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; color: #333; background-color: #fff; line-height: 1.8; overflow-x: hidden; }
-        a { text-decoration: none; color: inherit; transition: 0.3s ease; }
+        a { text-decoration: none; color: inherit; transition: 0.3s ease; cursor: pointer; }
         a:hover { opacity: 0.7; }
 
-        /* --- HEADER & TOP NAV --- */
-        .site-header { padding: 40px 0 20px; text-align: center; }
-        .top-cat-nav { margin-bottom: 30px; }
-        .top-cat-nav a { margin: 0 20px; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #999; }
-        .logo-area { display: flex; align-items: center; justify-content: center; position: relative; max-width: 1300px; margin: 0 auto; }
-        .site-title { font-family: 'Playfair Display', serif; font-size: 50px; letter-spacing: 12px; text-transform: uppercase; margin: 0; font-weight: 400; }
-        .search-trigger { position: absolute; right: 50px; font-size: 16px; color: #333; cursor: pointer; }
+        /* --- TOP BAR --- */
+        .top-bar {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 12px 60px; font-size: 11px; letter-spacing: 3px;
+            border-bottom: 1px solid #f2f2f2; text-transform: uppercase; font-weight: 500;
+        }
+        .top-categories a { margin-right: 30px; color: #999; }
+        .top-socials a { margin-left: 20px; font-size: 14px; }
 
-        /* --- STICKY MAIN NAV --- */
-        .main-nav { border-top: 1px solid #f2f2f2; border-bottom: 1px solid #f2f2f2; padding: 18px 0; text-align: center; position: sticky; top: 0; background: white; z-index: 1000; margin-top: 30px; }
+        /* --- HEADER & LOGO --- */
+        .site-header { padding: 50px 0 35px; text-align: center; }
+        .site-title { font-family: 'Playfair Display', serif; font-size: 54px; letter-spacing: 15px; text-transform: uppercase; margin: 0; font-weight: 400; }
+
+        /* --- MAIN NAVIGATION --- */
+        .main-nav { border-top: 1px solid #f2f2f2; border-bottom: 1px solid #f2f2f2; padding: 18px 0; text-align: center; position: sticky; top: 0; background: white; z-index: 1000; }
         .nav-links { margin: 0; padding: 0; list-style: none; display: flex; justify-content: center; }
-        .nav-links > li { position: relative; margin: 0 20px; font-size: 11px; letter-spacing: 3px; font-weight: 500; text-transform: uppercase; }
-        .submenu { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background: white; min-width: 200px; border: 1px solid #f2f2f2; padding: 15px 0; margin-top: 18px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .nav-links > li { position: relative; margin: 0 25px; font-size: 11px; letter-spacing: 3px; font-weight: 500; text-transform: uppercase; }
+
+        /* Dropdown for non-Destination items */
+        .submenu { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background: white; min-width: 220px; border: 1px solid #f2f2f2; padding: 15px 0; margin-top: 18px; z-index: 2000; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
         .nav-links > li:hover .submenu { display: block; }
         .submenu li a { font-size: 10px; letter-spacing: 2px; padding: 10px 25px; display: block; text-align: left; color: #777; }
-        .submenu li a:hover { background: #fafafa; padding-left: 30px; color: #000; }
+        .submenu li a:hover { background: #fafafa; padding-left: 32px; color: #000; }
 
-        /* --- WORLD MAP --- */
-        .map-section { max-width: 1400px; margin: 60px auto; padding: 0 40px; }
-        .map-wrapper { position: relative; width: 100%; min-height: 650px; background: url('https://upload.wikimedia.org/wikipedia/commons/e/ec/World_map_blank_without_borders.svg') no-repeat center/contain; }
-        .map-pin { position: absolute; display: flex; flex-direction: column; align-items: center; transition: 0.4s ease; cursor: pointer; }
-        .map-pin:hover { transform: translateY(-10px); z-index: 100; }
-        .pin-num { background: #d4af37; color: #fff; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; border: 2px solid #fff; margin-bottom: -13px; z-index: 2; position: relative; }
-        .pin-card { background: #fff; padding: 8px; border: 1px solid #f2f2f2; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: center; }
-        .pin-card img { width: 110px; height: 110px; object-fit: cover; display: block; }
-        .pin-card span { font-size: 8px; letter-spacing: 2px; text-transform: uppercase; color: #999; margin-top: 8px; display: block; }
-        
-        .loc-great-wall { top: 31%; left: 83%; } .loc-petra { top: 38%; left: 61%; }
-        .loc-machu { top: 66%; left: 29%; } .loc-colosseum { top: 28%; left: 52%; }
+        /* --- HERO SECTION --- */
+        .hero { position: relative; width: 100%; height: 80vh; background: url('https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=2000') center/cover no-repeat; display: flex; align-items: center; justify-content: center; }
+        .hero-box { background: rgba(255,255,255,0.96); padding: 50px 70px; text-align: center; border: 1px solid #eee; max-width: 700px; }
+        .hero-box span { font-size: 10px; letter-spacing: 5px; text-transform: uppercase; color: #999; margin-bottom: 20px; display: block; }
+        .hero-box h2 { font-family: 'Playfair Display', serif; font-size: 38px; margin: 0 0 20px; font-weight: 400; }
+        .btn-hero { background: #111; color: #fff; padding: 15px 40px; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; }
 
         /* --- COMPACT THE LATEST SECTION --- */
-        .recent-posts { max-width: 1000px; margin: 60px auto; padding: 0 40px; }
-        .line-header { display: flex; align-items: center; justify-content: center; margin-bottom: 40px; }
+        .recent-posts { max-width: 1000px; margin: 80px auto; padding: 0 40px; }
+        .line-header { display: flex; align-items: center; justify-content: center; margin-bottom: 50px; }
         .line { flex: 1; height: 1px; background: #eee; }
-        .header-title { font-family: 'Playfair Display', serif; font-size: 18px; margin: 0 30px; letter-spacing: 3px; text-transform: uppercase; color: #555; }
+        .header-title { font-family: 'Playfair Display', serif; font-size: 18px; margin: 0 30px; letter-spacing: 4px; text-transform: uppercase; color: #555; }
         
         .posts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
         .post-card { display: block; position: relative; }
         .post-img-wrapper { width: 100%; height: 240px; overflow: hidden; }
         .post-img-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
         .post-card:hover .post-img-wrapper img { transform: scale(1.05); }
-
         .post-text-box { background: #faf7f5; padding: 20px 15px; margin: -30px 10px 0; position: relative; z-index: 10; min-height: 150px; box-shadow: 0 5px 15px rgba(0,0,0,0.02); text-align: center; }
-        .post-text-box h3 { font-family: 'Playfair Display', serif; font-size: 15px; margin: 0 0 10px 0; font-weight: 400; color: #333; line-height: 1.3; }
+        .post-text-box h3 { font-family: 'Playfair Display', serif; font-size: 15px; margin: 0 0 10px 0; font-weight: 400; color: #333; }
         .post-text-box p { font-size: 10.5px; color: #888; margin: 0; line-height: 1.5; }
 
-        /* --- AUTO-MOVING CAROUSEL --- */
+        /* --- MOVING CAROUSEL --- */
         .currently-loving { max-width: 1300px; margin: 80px auto; padding: 0 40px; text-align: center; overflow: hidden; }
-        .carousel-track { display: flex; gap: 60px; width: max-content; animation: scrollCarousel 40s linear infinite; margin-top: 40px; }
+        .carousel-track { display: flex; gap: 60px; width: max-content; animation: scrollCarousel 35s linear infinite; margin-top: 40px; }
         .carousel-track:hover { animation-play-state: paused; }
         .shop-item img { max-height: 180px; object-fit: contain; }
         @keyframes scrollCarousel { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* --- SLIM PINK INSTAGRAM SECTION --- */
-        .insta-footer { background-color: #f2dbd5; padding: 30px 0 0 0; text-align: center; margin-top: 60px; }
-        .insta-footer h2 { font-family: 'Mrs Saint Delafield', cursive; font-size: 60px; color: #666; margin: 0 0 -12px 0; position: relative; z-index: 5; font-weight: 400; }
-        .insta-grid-container { background: #fff; padding: 15px; border-top: 1px solid rgba(0,0,0,0.05); }
-        .insta-carousel { display: grid; grid-template-columns: repeat(5, 1fr); max-width: 1400px; margin: 0 auto; gap: 0; }
-        .insta-item { border: 3px solid #fff; aspect-ratio: 1/1; overflow: hidden; position: relative; }
+        /* --- INSTAGRAM FOOTER --- */
+        .insta-footer { background-color: #f2dbd5; padding: 30px 0 0 0; text-align: center; margin-top: 80px; }
+        .insta-footer h2 { font-family: 'Mrs Saint Delafield', cursive; font-size: 65px; color: #666; margin-bottom: -15px; position: relative; z-index: 5; font-weight: 400; }
+        .insta-grid-container { background: #fff; padding: 20px; border-top: 1px solid rgba(0,0,0,0.05); }
+        .insta-carousel { display: grid; grid-template-columns: repeat(5, 1fr); max-width: 1400px; margin: 0 auto; }
+        .insta-item { border: 4px solid #fff; aspect-ratio: 1/1; overflow: hidden; }
         .insta-item img { width: 100%; height: 100%; object-fit: cover; }
 
         /* --- 3-COLUMN PREMIUM FOOTER --- */
         .site-footer { padding: 80px 40px; background-color: #fff; border-top: 1px solid #f2f2f2; }
         .footer-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.5fr 1fr; gap: 60px; align-items: start; }
-        .footer-links ul { list-style: none; padding: 0; margin: 0; }
-        .footer-links li { font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 18px; color: #888; }
-        .footer-links .sub-link { margin-left: 20px; font-size: 10px; color: #aaa; }
-        .footer-newsletter p { font-size: 13px; color: #777; margin-bottom: 35px; line-height: 1.6; }
-        .footer-newsletter input { width: 100%; border: none; border-bottom: 1px solid #333; padding: 12px 0; font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; outline: none; margin-bottom: 25px; background: transparent; }
-        .btn-footer-signup { background: transparent; border: 1px solid #333; padding: 15px 45px; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: 0.3s; margin-top: 10px; }
-        .btn-footer-signup:hover { background: #333; color: #fff; }
+        .footer-links li { font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 18px; color: #888; list-style: none; }
+        .footer-newsletter p { font-size: 13px; color: #777; margin-bottom: 30px; }
+        .footer-newsletter input { width: 100%; border: none; border-bottom: 1px solid #333; padding: 12px 0; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; outline: none; margin-bottom: 25px; background: transparent; }
+        .btn-signup { background: transparent; border: 1px solid #333; padding: 12px 40px; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; }
         .footer-branding { text-align: center; }
         .footer-logo-img { width: 220px; margin-bottom: 15px; }
-        .footer-year { font-family: 'Playfair Display', serif; font-size: 42px; color: #333; margin: 0; }
 
         @media (max-width: 1024px) {
             .footer-container, .posts-grid, .insta-carousel { grid-template-columns: 1fr; text-align: center; }
@@ -100,52 +96,45 @@
 </head>
 <body>
 
-    <header class="site-header">
-        <div class="top-cat-nav">
+    <div class="top-bar">
+        <div class="top-categories">
             <a href="#">Style</a> <a href="#">Living</a> <a href="#">Travel</a> <a href="#">Beauty</a>
         </div>
-        <div class="logo-area">
-            <h1 class="site-title">Renata Oliveira</h1>
-            <i class="fas fa-search search-trigger"></i>
+        <div class="top-socials">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-pinterest-p"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+            <a href="#"><i class="fas fa-search"></i></a>
         </div>
+    </div>
+
+    <header class="site-header">
+        <h1 class="site-title">Renata Oliveira</h1>
     </header>
 
     <nav class="main-nav">
         <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li>
-                <a href="guides.html">Destinations <i class="fas fa-chevron-down" style="font-size: 8px; margin-left: 5px;"></i></a>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="about.html">ABOUT</a></li>
+            <li><a href="./destinations.html">DESTINATIONS</a></li>
+            <li class="dropdown">
+                <a href="#">FEATURES</a>
                 <ul class="submenu">
-                    <li><a href="guides.html">Travel Guides</a></li>
-                    <li><a href="media-kit.html">Media Kit</a></li>
+                    <li><a href="#">GRID LAYOUT</a></li>
+                    <li><a href="#">SHOP THE LOOK</a></li>
                 </ul>
             </li>
-            <li>
-                <a href="#">Features <i class="fas fa-chevron-down" style="font-size: 8px; margin-left: 5px;"></i></a>
-                <ul class="submenu">
-                    <li><a href="wonders.html">7 Wonders</a></li>
-                    <li><a href="shop.html">Shop My Look</a></li>
-                </ul>
-            </li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="shop.html">SHOP</a></li>
+            <li><a href="contact.html">CONTACT</a></li>
         </ul>
     </nav>
 
-    <section class="map-section">
-        <div class="map-wrapper">
-            <a href="china.html" class="map-pin loc-great-wall">
-                <div class="pin-num">W</div>
-                <div class="pin-card"><img src="https://images.unsplash.com/photo-1508804185872-d7badad00f7d?q=80&w=200"><span>Great Wall</span></div>
-            </a>
-            <a href="jordan.html" class="map-pin loc-petra">
-                <div class="pin-num">W</div>
-                <div class="pin-card"><img src="https://images.unsplash.com/photo-1579606031801-90372864f770?q=80&w=200"><span>Petra</span></div>
-            </a>
-            <a href="italy.html" class="map-pin loc-colosseum">
-                <div class="pin-num">W</div>
-                <div class="pin-card"><img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?q=80&w=200"><span>Colosseum</span></div>
-            </a>
+    <section class="hero">
+        <div class="hero-box">
+            <span>Living</span>
+            <h2>Slow Mornings in Paris</h2>
+            <p>Capturing the quiet magic of the 1st Arrondissement.</p>
+            <a href="#" class="btn-hero">Read More</a>
         </div>
     </section>
 
@@ -156,15 +145,15 @@
         <div class="posts-grid">
             <a href="#" class="post-card">
                 <div class="post-img-wrapper"><img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=600"></div>
-                <div class="post-text-box"><h3>Instagrammable Morocco</h3><p>Curated tips for the blue doorways and views of Chefchaouen.</p></div>
+                <div class="post-text-box"><h3>Morocco Photography</h3><p>Tips for capturing the blue doorways of Chefchaouen.</p></div>
             </a>
             <a href="#" class="post-card">
                 <div class="post-img-wrapper"><img src="https://images.unsplash.com/photo-1547984609-44d47d05720a?q=80&w=600"></div>
-                <div class="post-text-box"><h3>Countdown to China</h3><p>Prepping for country #139 with my April photography itinerary.</p></div>
+                <div class="post-text-box"><h3>Guangzhou Itinerary</h3><p>Preparing for my April journey to country #139.</p></div>
             </a>
             <a href="#" class="post-card">
                 <div class="post-img-wrapper"><img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?q=80&w=600"></div>
-                <div class="post-text-box"><h3>Carry-On Essentials</h3><p>The 5 beauty products I never leave home without for a long flight.</p></div>
+                <div class="post-text-box"><h3>Travel Beauty Kit</h3><p>The 5 products I never leave home without for a long flight.</p></div>
             </a>
         </div>
     </section>
@@ -174,12 +163,11 @@
             <span class="line"></span><h2 class="header-title">Currently Loving</h2><span class="line"></span>
         </div>
         <div class="carousel-track">
-            <div class="shop-item"><img src="./dress.png"></div>
-            <div class="shop-item"><img src="./dress2.png"></div>
-            <div class="shop-item"><img src="./dress3.png"></div>
-            <div class="shop-item"><img src="./dress4.png"></div>
-            <div class="shop-item"><img src="./bag.png"></div>
-            <div class="shop-item"><img src="./sandals.png"></div>
+            <div class="shop-item"><img src="https://lp2.hm.com/hmgoepprod?set=source[/8f/7f/8f7f023f03b29c573752c78939c8789508544e3f.jpg],res[m],hmver[1]&call=url[file:/product/main]"></div>
+            <div class="shop-item"><img src="https://www.veja-store.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/v/j/vj_v10_leather_white_front.png"></div>
+            <div class="shop-item"><img src="https://lp2.hm.com/hmgoepprod?set=source[/04/ec/04ec95d8869c4c47f7d98344e698889816503c1b.jpg],res[m],hmver[2]&call=url[file:/product/main]"></div>
+            <div class="shop-item"><img src="https://lp2.hm.com/hmgoepprod?set=source[/8f/7f/8f7f023f03b29c573752c78939c8789508544e3f.jpg],res[m],hmver[1]&call=url[file:/product/main]"></div>
+            <div class="shop-item"><img src="https://www.veja-store.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/v/j/vj_v10_leather_white_front.png"></div>
         </div>
     </section>
 
@@ -203,10 +191,7 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="blog.html">Blog</a></li>
-                    <li><a href="presets.html">Presets</a></li>
-                    <li class="sub-link"><a href="#">Work With Me</a></li>
-                    <li class="sub-link"><a href="#">Guest Author</a></li>
-                    <li><a href="faq.html">Faq</a></li>
+                    <li>Contact</li>
                 </ul>
             </div>
             <div class="footer-newsletter">
@@ -214,12 +199,12 @@
                 <form>
                     <input type="text" placeholder="First Name">
                     <input type="email" placeholder="Email Address">
-                    <button type="submit" class="btn-footer-signup">Sign Up</button>
+                    <button type="submit" class="btn-signup">Sign Up</button>
                 </form>
             </div>
             <div class="footer-branding">
-                <img src="./renatalogo.png" class="footer-logo-img" alt="Branding Collage">
-                <div class="footer-year">2026</div>
+                <img src="./renatalogo.jpg" class="footer-logo-img" alt="Renata Oliver Logo">
+                <div style="font-family: 'Playfair Display'; font-size: 42px;">2026</div>
             </div>
         </div>
     </footer>

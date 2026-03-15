@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>China Travel Guide | Renata Oliveira</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* --- GLOBAL STYLES --- */
+        * { box-sizing: border-box; }
+        body { margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; color: #333; background-color: #fff; line-height: 1.8; overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; transition: 0.3s ease; cursor: pointer; }
+        a:hover { opacity: 0.7; }
+
+        /* --- NAVIGATION --- */
+        .site-header { padding: 40px 0 20px; text-align: center; border-bottom: 1px solid #f2f2f2; }
+        .site-title { font-family: 'Playfair Display', serif; font-size: 38px; letter-spacing: 10px; text-transform: uppercase; margin: 0; font-weight: 400; }
+        .back-nav { padding: 15px 0; text-align: center; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; border-bottom: 1px solid #f2f2f2; background: #fafafa; }
+
+        /* --- HERO --- */
+        .guide-hero {
+            height: 70vh;
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1508804185872-d7badad00f7d?q=80&w=2000');
+            background-size: cover; background-position: center;
+            display: flex; align-items: center; justify-content: center; color: #fff; text-align: center;
+        }
+        .hero-text h1 { font-family: 'Playfair Display', serif; font-size: 60px; letter-spacing: 8px; text-transform: uppercase; margin: 0; }
+        .hero-text p { font-family: 'Mrs Saint Delafield', cursive; font-size: 45px; margin-top: -10px; }
+
+        /* --- INTRO --- */
+        .intro-container { max-width: 800px; margin: 80px auto; text-align: center; padding: 0 40px; }
+        .intro-container h2 { font-family: 'Playfair Display', serif; font-size: 24px; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 30px; }
+        .intro-container p { color: #666; font-size: 15px; line-height: 2; }
+
+        /* --- SECTIONS --- */
+        .section-padding { max-width: 1200px; margin: 0 auto 100px; padding: 0 40px; }
+        .line-header { display: flex; align-items: center; justify-content: center; margin-bottom: 60px; }
+        .line { flex: 1; height: 1px; background: #eee; }
+        .header-title { font-family: 'Playfair Display', serif; font-size: 20px; margin: 0 30px; letter-spacing: 4px; text-transform: uppercase; color: #555; }
+
+        /* --- CITY GRID --- */
+        .city-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .city-card { position: relative; height: 400px; overflow: hidden; display: block; }
+        .city-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s; }
+        .city-card:hover img { transform: scale(1.1); }
+        .city-overlay { position: absolute; bottom: 0; left: 0; width: 100%; padding: 40px 20px; background: linear-gradient(transparent, rgba(0,0,0,0.7)); color: #fff; text-align: center; }
+        .city-overlay h4 { font-family: 'Playfair Display', serif; font-size: 22px; margin: 0; letter-spacing: 3px; text-transform: uppercase; }
+
+        /* --- FEATURED TOWN --- */
+        .featured-town { background: #faf7f5; padding: 100px 40px; display: flex; align-items: center; gap: 60px; max-width: 1200px; margin: 0 auto 100px; }
+        .town-img { flex: 1.2; height: 500px; }
+        .town-img img { width: 100%; height: 100%; object-fit: cover; box-shadow: 20px 20px 0 #eee; }
+        .town-text { flex: 1; }
+        .town-text h3 { font-family: 'Playfair Display', serif; font-size: 32px; margin-bottom: 20px; }
+
+        /* --- HOTELS SECTION --- */
+        .hotel-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; }
+        .hotel-card { background: #faf7f5; padding: 30px; display: flex; align-items: center; gap: 25px; border: 1px solid #f2f2f2; }
+        .hotel-card img { width: 150px; height: 150px; object-fit: cover; border-radius: 2px; }
+        .hotel-info h5 { font-family: 'Playfair Display', serif; font-size: 18px; margin: 0 0 10px 0; }
+        .hotel-info p { font-size: 12px; color: #777; margin: 0; line-height: 1.6; }
+        .hotel-tag { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: #d4af37; font-weight: 600; display: block; margin-bottom: 5px; }
+
+        /* --- FOOTER --- */
+        .site-footer { padding: 80px 40px; background-color: #fff; border-top: 1px solid #f2f2f2; }
+        .footer-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.5fr 1fr; gap: 60px; align-items: start; }
+        .footer-branding { text-align: center; }
+        .footer-logo-img { width: 220px; }
+
+        @media (max-width: 1024px) {
+            .city-grid, .hotel-grid { grid-template-columns: 1fr 1fr; }
+            .featured-town { flex-direction: column; }
+        }
+        @media (max-width: 768px) {
+            .city-grid, .hotel-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <h1 class="site-title">Renata Oliveira</h1>
+    </header>
+    
+    <nav class="back-nav">
+        <a href="guides.html"><i class="fas fa-chevron-left" style="font-size: 8px;"></i> Back to All Destinations</a>
+    </nav>
+
+    <section class="guide-hero">
+        <div class="hero-text">
+            <h1>China</h1>
+            <p>The Middle Kingdom</p>
+        </div>
+    </section>
+
+    <section class="intro-container">
+        <h2>Country #139</h2>
+        <p>From the futuristic skylines of Shanghai to the ancient waterfalls of Furong Town, China is a world of contrasts. Exploring this vast country requires a mix of curiosity and planning. Here is my curated guide to the cities and luxury stays.</p>
+    </section>
+
+    <section class="section-padding">
+        <div class="line-header">
+            <span class="line"></span><h3 class="header-title">The City Explorer</h3><span class="line"></span>
+        </div>
+        <div class="city-grid">
+            <a href="#" class="city-card">
+                <img src="https://images.unsplash.com/photo-1474181487882-5abf3f0ba6c2?q=80&w=600">
+                <div class="city-overlay"><h4>Shanghai</h4><span>Modern Luxury & The Bund</span></div>
+            </a>
+            <a href="#" class="city-card">
+                <img src="https://images.unsplash.com/photo-1547984609-44d47d05720a?q=80&w=600">
+                <div class="city-overlay"><h4>Beijing</h4><span>The Great Wall & Forbidden City</span></div>
+            </a>
+            <a href="#" class="city-card">
+                <img src="https://images.unsplash.com/photo-1544253102-12f5a8c2787c?q=80&w=600">
+                <div class="city-overlay"><h4>Guangzhou</h4><span>Cantonese Culture & Canton Tower</span></div>
+            </a>
+            <a href="#" class="city-card">
+                <img src="https://images.unsplash.com/photo-1526749837599-b4efa9fd259e?q=80&w=600">
+                <div class="city-overlay"><h4>Chongqing</h4><span>The Cyberpunk 3D City</span></div>
+            </a>
+            <a href="#" class="city-card">
+                <img src="https://images.unsplash.com/photo-1540206276207-3af23c080ba8?q=80&w=600">
+                <div class="city-overlay"><h4>Sanya Island</h4><span>China's Tropical Paradise</span></div>
+            </a>
+            <a href="#" class="city-card">
+                <img src="https://images.unsplash.com/photo-1582650625119-3a31f8fa2699?q=80&w=600">
+                <div class="city-overlay"><h4>Zhanjiang</h4><span>Seafood & Colonial History</span></div>
+            </a>
+        </div>
+    </section>
+
+    <section class="featured-town">
+        <div class="town-img">
+            <img src="https://images.unsplash.com/photo-1523731407965-2430cd12f5e4?q=80&w=800">
+        </div>
+        <div class="town-text">
+            <span>Hidden Gem</span>
+            <h3>Furong Town</h3>
+            <p>Often called "the town hanging on a waterfall," Furong is over 2,000 years old. At night, the village lights up, reflecting off the water in a way that feels like a scene from a dream.</p>
+            <a href="#" style="font-size: 11px; letter-spacing: 2px; text-transform: uppercase; border-bottom: 1px solid #333;">Read Full Story</a>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="line-header">
+            <span class="line"></span><h3 class="header-title">Luxury Stays</h3><span class="line"></span>
+        </div>
+        <div class="hotel-grid">
+            <div class="hotel-card">
+                <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=300">
+                <div class="hotel-info">
+                    <span class="hotel-tag">Beijing</span>
+                    <h5>The Peninsula Beijing</h5>
+                    <p>Blending traditional Chinese artistry with modern luxury, this hotel offers a regal experience in the heart of the capital.</p>
+                </div>
+            </div>
+            <div class="hotel-card">
+                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=300">
+                <div class="hotel-info">
+                    <span class="hotel-tag">Shanghai</span>
+                    <h5>The Peninsula Shanghai</h5>
+                    <p>Located on the Bund, it offers the best views of the Pudong skyline and glamorous Art Deco interiors.</p>
+                </div>
+            </div>
+            <div class="hotel-card">
+                <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=300">
+                <div class="hotel-info">
+                    <span class="hotel-tag">Guangzhou</span>
+                    <h5>Four Seasons Guangzhou</h5>
+                    <p>Occupying the top floors of the IFC, it's one of the highest hotels in the world with futuristic architecture.</p>
+                </div>
+            </div>
+            <div class="hotel-card">
+                <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?q=80&w=300">
+                <div class="hotel-info">
+                    <span class="hotel-tag">Sanya</span>
+                    <h5>The Ritz-Carlton, Sanya</h5>
+                    <p>A beachfront sanctuary modeled after the Forbidden City, perfect for a tropical luxury escape on Yalong Bay.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <ul style="list-style: none; padding: 0;">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-newsletter" style="text-align: center;">
+                <p style="font-size: 13px; color: #777;">Join the list for exclusive travel guides.</p>
+                <div style="border-bottom: 1px solid #333; width: 60px; margin: 20px auto;"></div>
+            </div>
+            <div class="footer-branding">
+                <img src="./renatalogo.jpg" class="footer-logo-img" alt="Branding Collage">
+                <div style="font-family: 'Playfair Display'; font-size: 38px;">2026</div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

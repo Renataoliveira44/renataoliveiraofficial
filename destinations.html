@@ -3,226 +3,212 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Renata Oliveira | Official</title>
+    <title>Destinations | Renata Oliveira</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
-        /* --- GLOBAL STYLES --- */
         * { box-sizing: border-box; }
-        body { margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; color: #333; background-color: #fff; line-height: 1.8; overflow-x: hidden; }
-        a { text-decoration: none; color: inherit; transition: 0.3s ease; }
-        a:hover { opacity: 0.7; }
+        body { margin: 0; font-family: 'Montserrat', sans-serif; background: #fff; color: #333; }
 
-        /* --- HEADER --- */
-        .site-header { padding: 40px 0 20px; text-align: center; }
-        .top-cat-nav { margin-bottom: 30px; }
-        .top-cat-nav a { margin: 0 20px; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #999; }
+        .destinations-layout {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            max-width: 1600px;
+            margin: 40px auto;
+            gap: 50px;
+            padding: 0 40px;
+        }
+
+        /* --- SIDEBAR & ACCORDION --- */
+        .sidebar { border-right: 1px solid #f2f2f2; padding-right: 20px; }
+        .sidebar-header { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #999; margin-bottom: 30px; }
         
-        .logo-area { display: flex; align-items: center; justify-content: center; position: relative; max-width: 1300px; margin: 0 auto; }
-        .site-title { font-family: 'Playfair Display', serif; font-size: 50px; letter-spacing: 12px; text-transform: uppercase; margin: 0; font-weight: 400; }
-        .search-trigger { position: absolute; right: 50px; font-size: 16px; color: #333; cursor: pointer; }
-
-        /* --- STICKY MAIN NAV --- */
-        .main-nav { border-top: 1px solid #f2f2f2; border-bottom: 1px solid #f2f2f2; padding: 18px 0; text-align: center; position: sticky; top: 0; background: white; z-index: 1000; margin-top: 30px; }
-        .nav-links { margin: 0; padding: 0; list-style: none; display: flex; justify-content: center; }
-        .nav-links > li { position: relative; margin: 0 20px; font-size: 11px; letter-spacing: 3px; font-weight: 500; text-transform: uppercase; }
-        .submenu { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background: white; min-width: 200px; border: 1px solid #f2f2f2; padding: 15px 0; margin-top: 18px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-        .nav-links > li:hover .submenu { display: block; }
-        .submenu li a { font-size: 10px; letter-spacing: 2px; padding: 10px 25px; display: block; text-align: left; color: #777; }
-        .submenu li a:hover { background: #fafafa; padding-left: 30px; color: #000; }
-
-        /* --- WORLD MAP --- */
-        .map-section { max-width: 1400px; margin: 60px auto; padding: 0 40px; }
-        .map-wrapper { position: relative; width: 100%; min-height: 650px; background: url('https://upload.wikimedia.org/wikipedia/commons/e/ec/World_map_blank_without_borders.svg') no-repeat center/contain; }
-        .map-pin { position: absolute; display: flex; flex-direction: column; align-items: center; transition: 0.4s ease; cursor: pointer; }
-        .map-pin:hover { transform: translateY(-10px); z-index: 100; }
-        .pin-num { background: #d4af37; color: #fff; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; border: 2px solid #fff; margin-bottom: -13px; z-index: 2; position: relative; }
-        .pin-card { background: #fff; padding: 8px; border: 1px solid #f2f2f2; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: center; }
-        .pin-card img { width: 110px; height: 110px; object-fit: cover; display: block; }
-        .pin-card span { font-size: 8px; letter-spacing: 2px; text-transform: uppercase; color: #999; margin-top: 8px; display: block; }
+        .continent-group { margin-bottom: 5px; }
         
-        .loc-great-wall { top: 31%; left: 83%; } .loc-petra { top: 38%; left: 61%; }
-        .loc-machu { top: 66%; left: 29%; } .loc-colosseum { top: 28%; left: 52%; }
+        .continent-toggle { 
+            display: flex; 
+            align-items: center; 
+            padding: 15px 0; 
+            font-size: 11px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: #666;
+            cursor: pointer;
+            transition: 0.3s;
+            border-bottom: 1px solid #fafafa;
+        }
+        .continent-toggle:hover { color: #000; }
+        .continent-num { color: #ddd; margin-right: 15px; width: 20px; font-weight: 300; }
+        .continent-toggle i { font-size: 9px; margin-right: 15px; color: #cdc1b4; transition: 0.3s; }
+        
+        .country-list { 
+            max-height: 0; 
+            overflow: hidden; 
+            transition: max-height 0.4s ease-out; 
+            list-style: none; 
+            padding-left: 55px;
+        }
+        
+        /* CLICKABLE COUNTRY LINKS */
+        .country-list li { 
+            padding: 8px 0; 
+        }
+        .country-list li a {
+            font-size: 10.5px; 
+            letter-spacing: 2px; 
+            text-transform: uppercase; 
+            color: #999;
+            transition: color 0.3s;
+            display: block;
+        }
+        .country-list li a:hover {
+            color: #000; /* Turns black when hovered */
+        }
+        .country-list li.view-region { font-weight: 600; padding-top: 15px; }
+        .country-list li.view-region a { color: #666; }
 
-        /* --- REFINED BLOG SECTION (THE LATEST) --- */
-        .recent-posts { max-width: 1100px; margin: 80px auto; padding: 0 40px; }
-        .line-header { display: flex; align-items: center; justify-content: center; margin-bottom: 60px; }
-        .line { flex: 1; height: 1px; background: #eee; }
-        .header-title { font-family: 'Playfair Display', serif; font-size: 20px; margin: 0 30px; letter-spacing: 4px; text-transform: uppercase; color: #555; }
-        .posts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        .post-card { display: block; position: relative; }
-        .post-img-wrapper { width: 100%; height: 280px; overflow: hidden; }
-        .post-img-wrapper img { width: 100%; height: 100%; object-fit: cover; }
-        .post-text-box { background: #faf7f5; padding: 25px 20px; margin: -40px 15px 0; position: relative; z-index: 10; min-height: 180px; box-shadow: 0 8px 20px rgba(0,0,0,0.03); text-align: center; }
-        .post-text-box h3 { font-family: 'Playfair Display', serif; font-size: 17px; margin: 0 0 12px 0; font-weight: 400; color: #444; line-height: 1.3; }
-        .post-text-box p { font-size: 11.5px; color: #777; margin: 0; line-height: 1.6; }
+        /* Expanded State */
+        .active .country-list { max-height: 1000px; }
+        .active .continent-toggle i { transform: rotate(45deg); color: #000; }
 
-        /* --- AUTO-MOVING CAROUSEL --- */
-        .currently-loving { max-width: 1300px; margin: 80px auto; padding: 0 40px; text-align: center; overflow: hidden; }
-        .carousel-track { display: flex; gap: 60px; width: max-content; animation: scrollCarousel 40s linear infinite; margin-top: 40px; }
-        .carousel-track:hover { animation-play-state: paused; }
-        .shop-item img { max-height: 180px; object-fit: contain; }
-        @keyframes scrollCarousel { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        /* --- MAP CONTROLS --- */
+        .map-top-controls { display: flex; gap: 20px; margin-bottom: 40px; align-items: center; }
+        .dropdown-dest { flex: 1; padding: 15px; border: 1px solid #eee; background: #fdfdfd; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: #888; border-radius: 4px; }
+        .search-bar { flex: 2; display: flex; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 8px; }
+        .search-bar input { border: none; width: 100%; outline: none; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #333; }
+        .search-bar i { color: #bbb; font-size: 14px; }
 
-        /* --- INSTAGRAM FOOTER --- */
-        .insta-footer { background-color: #f2dbd5; padding: 40px 0 0 0; text-align: center; margin-top: 80px; }
-        .insta-footer h2 { font-family: 'Mrs Saint Delafield', cursive; font-size: 70px; color: #666; margin-bottom: -15px; position: relative; z-index: 5; font-weight: 400; }
-        .insta-grid-container { background: #fff; padding: 20px; border-top: 1px solid rgba(0,0,0,0.05); }
-        .insta-carousel { display: grid; grid-template-columns: repeat(5, 1fr); max-width: 1400px; margin: 0 auto; }
-        .insta-item { border: 4px solid #fff; aspect-ratio: 1/1; overflow: hidden; position: relative; }
-        .insta-item img { width: 100%; height: 100%; object-fit: cover; }
+        /* --- MAP WRAPPER --- */
+        .map-wrapper { 
+            position: relative; width: 100%; height: 750px; 
+            background: url('https://upload.wikimedia.org/wikipedia/commons/e/ec/World_map_blank_without_borders.svg') no-repeat center/contain;
+            opacity: 0.7;
+        }
 
-        /* --- 3-COLUMN PREMIUM FOOTER --- */
-        .site-footer { padding: 80px 40px; background-color: #fff; border-top: 1px solid #f2f2f2; }
-        .footer-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.5fr 1fr; gap: 60px; align-items: start; }
-        .footer-links ul { list-style: none; padding: 0; margin: 0; }
-        .footer-links li { font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 18px; color: #888; }
-        .footer-links .sub-link { margin-left: 20px; font-size: 10px; color: #aaa; }
-        .footer-newsletter p { font-size: 13px; color: #777; margin-bottom: 35px; line-height: 1.6; }
-        .footer-newsletter input { width: 100%; border: none; border-bottom: 1px solid #333; padding: 12px 0; font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; outline: none; margin-bottom: 25px; background: transparent; }
-        .btn-footer-signup { background: transparent; border: 1px solid #333; padding: 15px 45px; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: 0.3s; margin-top: 10px; }
-        .btn-footer-signup:hover { background: #333; color: #fff; }
-        .footer-branding { text-align: center; }
-        .footer-logo-img { width: 220px; margin-bottom: 20px; }
-        .footer-date-tag { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-weight: 600; margin-bottom: 10px; }
-        .footer-year { font-family: 'Playfair Display', serif; font-size: 42px; color: #333; margin-top: 0; }
+        .map-card { position: absolute; text-align: center; width: 160px; }
+        .map-card img { width: 100%; height: 150px; object-fit: cover; border: 8px solid #fff; box-shadow: 0 15px 35px rgba(0,0,0,0.06); }
+        .map-card span { display: block; margin-top: 12px; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: #999; font-weight: 500; }
 
-        @media (max-width: 1024px) {
-            .footer-container, .posts-grid, .insta-carousel { grid-template-columns: 1fr; text-align: center; }
-            .nav-links { display: none; }
+        .pin-circle {
+            position: absolute; width: 28px; height: 28px; background: #f2dbd5; color: #fff;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 10px; border: 2px solid #fff; z-index: 10; font-weight: 600;
+        }
+
+        /* Positions */
+        .loc-7 { top: 22%; left: 18%; }
+        .loc-1 { top: 65%; left: 52%; }
+
+        @media (max-width: 1100px) {
+            .destinations-layout { grid-template-columns: 1fr; }
+            .sidebar { border: none; padding-right: 0; }
         }
     </style>
 </head>
 <body>
 
-    <header class="site-header">
-        <div class="top-cat-nav">
-            <a href="#">Style</a> <a href="#">Living</a> <a href="#">Travel</a> <a href="#">Beauty</a>
-        </div>
-        <div class="logo-area">
-            <h1 class="site-title">Renata Oliveira</h1>
-            <i class="fas fa-search search-trigger"></i>
-        </div>
-    </header>
-
-    <nav class="main-nav">
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li>
-                <a href="guides.html">Destinations <i class="fas fa-chevron-down" style="font-size: 8px; margin-left: 5px;"></i></a>
-                <ul class="submenu">
-                    <li><a href="guides.html">Travel Guides</a></li>
-                    <li><a href="media-kit.html">Media Kit</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#">Features <i class="fas fa-chevron-down" style="font-size: 8px; margin-left: 5px;"></i></a>
-                <ul class="submenu">
-                    <li><a href="wonders.html">7 Wonders</a></li>
-                    <li><a href="shop.html">Shop My Look</a></li>
-                </ul>
-            </li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
-
-    <section class="map-section">
-        <div class="map-wrapper">
-            <a href="china.html" class="map-pin loc-great-wall">
-                <div class="pin-num">W</div>
-                <div class="pin-card"><img src="https://images.unsplash.com/photo-1508804185872-d7badad00f7d?q=80&w=200"><span>Great Wall</span></div>
-            </a>
-            <a href="jordan.html" class="map-pin loc-petra">
-                <div class="pin-num">W</div>
-                <div class="pin-card"><img src="https://images.unsplash.com/photo-1579606031801-90372864f770?q=80&w=200"><span>Petra</span></div>
-            </a>
-            <a href="italy.html" class="map-pin loc-colosseum">
-                <div class="pin-num">W</div>
-                <div class="pin-card"><img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?q=80&w=200"><span>Colosseum</span></div>
-            </a>
-        </div>
-    </section>
-
-    <section class="recent-posts">
-        <div class="line-header">
-            <span class="line"></span><h2 class="header-title">The Latest</h2><span class="line"></span>
-        </div>
-        <div class="posts-grid">
-            <a href="#" class="post-card">
-                <div class="post-img-wrapper"><img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=600"></div>
-                <div class="post-text-box"><h3>Instagrammable Morocco</h3><p>A guide to the blue doorways and panoramic views of Chefchaouen.</p></div>
-            </a>
-            <a href="#" class="post-card">
-                <div class="post-img-wrapper"><img src="https://images.unsplash.com/photo-1547984609-44d47d05720a?q=80&w=600"></div>
-                <div class="post-text-box"><h3>Countdown to China</h3><p>Preparing for country #139. My April Guangzhou itinerary is live.</p></div>
-            </a>
-            <a href="#" class="post-card">
-                <div class="post-img-wrapper"><img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?q=80&w=600"></div>
-                <div class="post-text-box"><h3>Carry-On Essentials</h3><p>The 5 beauty products I never leave home without for a long flight.</p></div>
-            </a>
-        </div>
-    </section>
-
-    <section class="currently-loving">
-        <div class="line-header">
-            <span class="line"></span><h2 class="header-title">Currently Loving</h2><span class="line"></span>
-        </div>
-        <div class="carousel-track">
-            <div class="shop-item"><img src="./"></div>
-            <div class="shop-item"><img src="https://www.veja-store.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/v/j/vj_v10_leather_white_front.png"></div>
-            <div class="shop-item"><img src="https://lp2.hm.com/hmgoepprod?set=source[/04/ec/04ec95d8869c4c47f7d98344e698889816503c1b.jpg],res[m],hmver[2]&call=url[file:/product/main]"></div>
-            <div class="shop-item"><img src="https://lp2.hm.com/hmgoepprod?set=source[/8f/7f/8f7f023f03b29c573752c78939c8789508544e3f.jpg],res[m],hmver[1]&call=url[file:/product/main]"></div>
-            <div class="shop-item"><img src="https://www.veja-store.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/v/j/vj_v10_leather_white_front.png"></div>
-            <div class="shop-item"><img src="https://lp2.hm.com/hmgoepprod?set=source[/04/ec/04ec95d8869c4c47f7d98344e698889816503c1b.jpg],res[m],hmver[2]&call=url[file:/product/main]"></div>
-        </div>
-    </section>
-
-    <section class="insta-footer">
-        <h2>Instagram</h2>
-        <div class="insta-grid-container">
-            <div class="insta-carousel">
-                <div class="insta-item"><img src="https://images.unsplash.com/photo-1510972527921-ce03766a1cf1?q=80&w=400"></div>
-                <div class="insta-item"><img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?q=80&w=400"></div>
-                <div class="insta-item"><img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=400"></div>
-                <div class="insta-item"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=400"></div>
-                <div class="insta-item"><img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?q=80&w=400"></div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="site-footer">
-        <div class="footer-container">
-            <div class="footer-links">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="presets.html">Presets</a></li>
-                    <li>Contact</li>
-                    <li class="sub-link"><a href="#">Work With Me</a></li>
-                    <li class="sub-link"><a href="#"></a></li>
+    <div class="destinations-layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">Click to Expand</div>
+            
+            <div class="continent-group">
+                <div class="continent-toggle" onclick="toggleContinent(this)">
+                    <span class="continent-num">1</span> <i class="fas fa-plus"></i> Africa
+                </div>
+                <ul class="country-list">
+                    <li class="view-region"><a href="africa-hub.html">View Region</a></li>
+                    <li><a href="botswana.html">Botswana</a></li>
+                    <li><a href="egypt.html">Egypt</a></li>
+                    <li><a href="kenya.html">Kenya</a></li>
+                    <li><a href="mauritius.html">Mauritius</a></li>
+                    <li><a href="morocco.html">Morocco</a></li>
+                    <li><a href="south-africa.html">South Africa</a></li>
                 </ul>
             </div>
-            <div class="footer-newsletter">
-                <p>Join over 20 million people and get exclusive travel tips, giveaways and more!</p>
-                <form>
-                    <input type="text" placeholder="First Name">
-                    <input type="email" placeholder="Email Address">
-                    <button type="submit" class="btn-footer-signup">Sign Up</button>
-                </form>
+
+            <div class="continent-group">
+                <div class="continent-toggle" onclick="toggleContinent(this)">
+                    <span class="continent-num">2</span> <i class="fas fa-plus"></i> Asia
+                </div>
+                <ul class="country-list">
+                    <li class="view-region"><a href="asia-hub.html">View Region</a></li>
+                    <li><a href="china-guide.html">China</a></li>
+                    <li><a href="hong-kong.html">Hong Kong</a></li>
+                    <li><a href="indonesia.html">Indonesia</a></li>
+                    <li><a href="japan.html">Japan</a></li>
+                    <li><a href="thailand.html">Thailand</a></li>
+                    <li><a href="vietnam-guide.html">Vietnam</a></li>
+                </ul>
             </div>
-            <div class="footer-branding">
-                <img src="./renatalogo.png" class="footer-logo-img" alt="Branding Collage">
-                <div class="footer-date-tag">Since March 2011</div>
-                <div class="footer-year">2026</div>
+
+            <div class="continent-group">
+                <div class="continent-toggle" onclick="toggleContinent(this)">
+                    <span class="continent-num">5</span> <i class="fas fa-plus"></i> Europe
+                </div>
+                <ul class="country-list">
+                    <li class="view-region"><a href="europe-hub.html">View Region</a></li>
+                    <li><a href="france.html">France</a></li>
+                    <li><a href="hungary-guide.html">Hungary</a></li>
+                    <li><a href="italy.html">Italy</a></li>
+                    <li><a href="spain.html">Spain</a></li>
+                </ul>
             </div>
-        </div>
-    </footer>
+
+            <div class="continent-group">
+                <div class="continent-toggle" onclick="toggleContinent(this)">
+                    <span class="continent-num">7</span> <i class="fas fa-plus"></i> North America
+                </div>
+                <ul class="country-list">
+                    <li class="view-region"><a href="na-hub.html">View Region</a></li>
+                    <li><a href="canada.html">Canada</a></li>
+                    <li><a href="mexico.html">Mexico</a></li>
+                    <li><a href="usa.html">USA</a></li>
+                </ul>
+                
+            </div>
+
+        </aside>
+
+        <main class="map-area">
+            <div class="map-top-controls">
+                <select class="dropdown-dest">
+                    <option>By Destination</option>
+                </select>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search the site...">
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+
+            <div class="map-wrapper">
+                <div class="map-card loc-7">
+                    <img src="https://images.unsplash.com/photo-1449034446853-66c86144b0ad?q=80&w=400">
+                    <span>North America</span>
+                    <div class="pin-circle" style="right: -14px; top: 40%;">7</div>
+                </div>
+                
+                <div class="map-card loc-1">
+                    <img src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?q=80&w=400">
+                    <span>Africa</span>
+                    <div class="pin-circle" style="left: -14px; top: 40%;">1</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function toggleContinent(element) {
+            const group = element.parentElement;
+            document.querySelectorAll('.continent-group').forEach(other => {
+                if (other !== group) other.classList.remove('active');
+            });
+            group.classList.toggle('active');
+        }
+    </script>
 
 </body>
 </html>
