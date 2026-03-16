@@ -56,10 +56,33 @@
             position: relative; width: 100%; height: 600px; 
             background: url('https://upload.wikimedia.org/wikipedia/commons/e/ec/World_map_blank_without_borders.svg') no-repeat center/contain;
             opacity: 0.7;
+            margin-bottom: 40px;
         }
         .map-card { position: absolute; text-align: center; width: 150px; }
         .map-card img { width: 100%; height: 140px; object-fit: cover; border: 8px solid #fff; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
         .map-card span { display: block; margin-top: 10px; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: #999; }
+
+        /* --- NEW HOME BUTTON STYLES --- */
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .btn-home {
+            padding: 12px 30px;
+            border: 1px solid #333;
+            background: #fff;
+            color: #333;
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .btn-home:hover {
+            background: #333;
+            color: #fff;
+        }
 
         /* --- FULL WIDTH POPULAR SECTION --- */
         .popular-destinations { 
@@ -70,7 +93,7 @@
             margin-top: 60px;
         }
         .popular-inner {
-            max-width: 1400px; /* Wider for full effect */
+            max-width: 1400px; 
             margin: 0 auto;
         }
         .popular-header { text-align: center; margin-bottom: 60px; }
@@ -126,13 +149,13 @@
                 </ul>
             </div>
             
-            <div class="continent-toggle"><span class="continent-num">3</span> <i class="fas fa-plus"></i> The Caribbean</div>
-            <div class="continent-toggle"><span class="continent-num">4</span> <i class="fas fa-plus"></i> Central America</div>
-            <div class="continent-toggle"><span class="continent-num">5</span> <i class="fas fa-plus"></i> Europe</div>
-            <div class="continent-toggle"><span class="continent-num">6</span> <i class="fas fa-plus"></i> Middle East</div>
-            <div class="continent-toggle"><span class="continent-num">7</span> <i class="fas fa-plus"></i> North America</div>
-            <div class="continent-toggle"><span class="continent-num">8</span> <i class="fas fa-plus"></i> Oceania</div>
-            <div class="continent-toggle"><span class="continent-num">9</span> <i class="fas fa-plus"></i> South America</div>
+            <div class="continent-toggle" onclick="toggleContinent(this)"><span class="continent-num">3</span> <i class="fas fa-plus"></i> The Caribbean</div>
+            <div class="continent-toggle" onclick="toggleContinent(this)"><span class="continent-num">4</span> <i class="fas fa-plus"></i> Central America</div>
+            <div class="continent-toggle" onclick="toggleContinent(this)"><span class="continent-num">5</span> <i class="fas fa-plus"></i> Europe</div>
+            <div class="continent-toggle" onclick="toggleContinent(this)"><span class="continent-num">6</span> <i class="fas fa-plus"></i> Middle East</div>
+            <div class="continent-toggle" onclick="toggleContinent(this)"><span class="continent-num">7</span> <i class="fas fa-plus"></i> North America</div>
+            <div class="continent-toggle" onclick="toggleContinent(this)"><span class="continent-num">8</span> <i class="fas fa-plus"></i> Oceania</div>
+            <div class="continent-toggle" onclick="toggleContinent(this)"><span class="continent-num">9</span> <i class="fas fa-plus"></i> South America</div>
         </aside>
 
         <main class="map-area">
@@ -152,6 +175,10 @@
                     <img src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?q=80&w=300">
                     <span>Africa</span>
                 </div>
+            </div>
+
+            <div class="btn-group">
+                <a href="index.html" class="btn-home">Back to Home</a>
             </div>
         </main>
     </div>
