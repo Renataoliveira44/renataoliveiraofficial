@@ -25,7 +25,7 @@
         /* --- HERO --- */
         .guide-hero {
             height: 70vh;
-            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1525625239514-75b0b26000bb?q=80&w=2000');
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1525625293386-3fb0ad7c1fe6?q=80&w=2000');
             background-size: cover; background-position: center;
             display: flex; align-items: center; justify-content: center; color: #fff; text-align: center;
         }
@@ -43,15 +43,15 @@
         .line { flex: 1; height: 1px; background: #eee; }
         .header-title { font-family: 'Playfair Display', serif; font-size: 20px; margin: 0 30px; letter-spacing: 4px; text-transform: uppercase; color: #555; }
 
-        /* --- CITY/DISTRICT GRID --- */
-        .city-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        .city-card { position: relative; height: 400px; overflow: hidden; display: block; }
+        /* --- CITY GRID --- */
+        .city-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
+        .city-card { position: relative; height: 450px; overflow: hidden; display: block; }
         .city-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s; }
         .city-card:hover img { transform: scale(1.1); }
         .city-overlay { position: absolute; bottom: 0; left: 0; width: 100%; padding: 40px 20px; background: linear-gradient(transparent, rgba(0,0,0,0.7)); color: #fff; text-align: center; }
-        .city-overlay h4 { font-family: 'Playfair Display', serif; font-size: 22px; margin: 0; letter-spacing: 3px; text-transform: uppercase; }
+        .city-overlay h4 { font-family: 'Playfair Display', serif; font-size: 26px; margin: 0; letter-spacing: 3px; text-transform: uppercase; }
 
-        /* --- FEATURED TOWN/DISTRICT --- */
+        /* --- FEATURED SECTION --- */
         .featured-town { background: #faf7f5; padding: 100px 40px; display: flex; align-items: center; gap: 60px; max-width: 1200px; margin: 0 auto 100px; }
         .town-img { flex: 1.2; height: 500px; }
         .town-img img { width: 100%; height: 100%; object-fit: cover; box-shadow: 20px 20px 0 #eee; }
@@ -66,18 +66,25 @@
         .hotel-info p { font-size: 12px; color: #777; margin: 0; line-height: 1.6; }
         .hotel-tag { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: #d4af37; font-weight: 600; display: block; margin-bottom: 5px; }
 
-        /* --- FOOTER --- */
-        .site-footer { padding: 80px 40px; background-color: #fff; border-top: 1px solid #f2f2f2; }
-        .footer-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.5fr 1fr; gap: 60px; align-items: start; }
-        .footer-branding { text-align: center; }
-        .footer-logo-img { width: 220px; }
+        /* --- FUN & MODERN FOOTER --- */
+        .fun-footer { background-color: #fff; border-top: 1px solid #eee; padding: 80px 0 40px; margin-top: 100px; }
+        .footer-insta-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; max-width: 1200px; margin: 0 auto 50px; padding: 0 20px; }
+        .insta-item { aspect-ratio: 1/1; overflow: hidden; }
+        .insta-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s ease; }
+        .insta-item:hover img { transform: scale(1.1); }
+        .footer-content { text-align: center; max-width: 800px; margin: 0 auto; }
+        .footer-tagline { font-family: 'Mrs Saint Delafield', cursive; font-size: 40px; color: #cdc1b4; margin-bottom: 10px; }
+        .footer-nav { margin: 25px 0; display: flex; justify-content: center; gap: 30px; }
+        .footer-nav a { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #333; font-weight: 600; }
+        .footer-socials { display: flex; justify-content: center; gap: 20px; margin-bottom: 40px; }
+        .footer-socials a { width: 45px; height: 45px; background: #faf7f5; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #333; transition: 0.3s; }
+        .footer-socials a:hover { background: #333; color: #fff; transform: translateY(-5px); }
+        .copyright { font-size: 10px; color: #bbb; letter-spacing: 2px; text-transform: uppercase; }
 
         @media (max-width: 1024px) {
-            .city-grid, .hotel-grid { grid-template-columns: 1fr 1fr; }
-            .featured-town { flex-direction: column; }
-        }
-        @media (max-width: 768px) {
             .city-grid, .hotel-grid { grid-template-columns: 1fr; }
+            .featured-town { flex-direction: column; }
+            .footer-insta-grid { grid-template-columns: repeat(3, 1fr); }
         }
     </style>
 </head>
@@ -88,7 +95,7 @@
     </header>
     
     <nav class="back-nav">
-        <a href="guides.html"><i class="fas fa-chevron-left" style="font-size: 8px;"></i> Back to All Destinations</a>
+        <a href="destinations.html"><i class="fas fa-chevron-left" style="font-size: 8px;"></i> Back to Destinations</a>
     </nav>
 
     <section class="guide-hero">
@@ -99,45 +106,49 @@
     </section>
 
     <section class="intro-container">
-        <h2>Modernity Meets Nature</h2>
-        <p>Singapore is a futuristic oasis where innovative architecture blends seamlessly with lush botanical gardens. From the world-class shopping on Orchard Road to the iconic Supertrees, it is a city that never ceases to inspire.</p>
+        <h2>A Garden in a City</h2>
+        <p>Singapore is where the future meets tradition. Known for its impeccable cleanliness, futuristic architecture, and melting pot of cultures, it is one of the world's most dynamic urban escapes. From the dazzling light shows at Marina Bay to the lush greenery of the Botanic Gardens, every corner tells a story of innovation.</p>
     </section>
 
     <section class="section-padding">
         <div class="line-header">
-            <span class="line"></span><h3 class="header-title">The District Explorer</h3><span class="line"></span>
+            <span class="line"></span><h3 class="header-title">Urban Discoveries</h3><span class="line"></span>
         </div>
         <div class="city-grid">
             <a href="#" class="city-card">
-                <img src="https://images.unsplash.com/photo-1525625239514-75b0b26000bb?q=80&w=600">
-                <div class="city-overlay"><h4>Marina Bay</h4><span>Iconic Skylines & Infinity Pools</span></div>
+                <img src="https://images.unsplash.com/photo-1562610116-fb4f7f9c8e2c?q=80&w=1000">
+                <div class="city-overlay"><h4>Marina Bay</h4><span>Iconic Skyline & Luxury</span></div>
             </a>
             <a href="#" class="city-card">
-                <img src="https://images.unsplash.com/photo-1506351421178-63b52a2d2562?q=80&w=600">
-                <div class="city-overlay"><h4>Orchard Road</h4><span>Premium Shopping & High Fashion</span></div>
+                <img src="https://images.unsplash.com/photo-1506351466449-9ab5403e910c?q=80&w=1000">
+                <div class="city-overlay"><h4>Gardens by the Bay</h4><span>Supertrees & Cloud Forest</span></div>
             </a>
             <a href="#" class="city-card">
-                <img src="https://images.unsplash.com/photo-1559592490-68a1f02f23b7?q=80&w=600">
-                <div class="city-overlay"><h4>Tiong Bahru</h4><span>Art Deco Heritage & Cafe Culture</span></div>
+                <img src="https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?q=80&w=1000">
+                <div class="city-overlay"><h4>Sentosa Island</h4><span>Sun, Sand & Adventure</span></div>
+            </a>
+            <a href="#" class="city-card">
+                <img src="https://images.unsplash.com/photo-1549194382-246d7d676f24?q=80&w=1000">
+                <div class="city-overlay"><h4>Orchard Road</h4><span>World-Class Shopping</span></div>
             </a>
         </div>
     </section>
 
     <section class="featured-town">
         <div class="town-img">
-            <img src="https://images.unsplash.com/photo-1563911302283-d2bc129e7570?q=80&w=800">
+            <img src="https://images.unsplash.com/photo-1583000215873-8161218a1a23?q=80&w=800">
         </div>
         <div class="town-text">
-            <span>Must Visit</span>
-            <h3>Gardens by the Bay</h3>
-            <p>A horticultural masterpiece. Experience the surreal Cloud Forest and the Flower Dome, followed by the enchanting Garden Rhapsody light show at the Supertree Grove.</p>
-            <a href="#" style="font-size: 11px; letter-spacing: 2px; text-transform: uppercase; border-bottom: 1px solid #333;">Read My Full Guide</a>
+            <span>Engineering Marvel</span>
+            <h3>Jewel Changi</h3>
+            <p>Often called the best airport in the world, Jewel Changi is a destination in itself. The centerpiece is the HSBC Rain Vortex—the world's tallest indoor waterfall—surrounded by a lush forest valley and high-end dining.</p>
+            <a href="#" style="font-size: 11px; letter-spacing: 2px; text-transform: uppercase; border-bottom: 1px solid #333;">Visit Jewel</a>
         </div>
     </section>
 
     <section class="section-padding">
         <div class="line-header">
-            <span class="line"></span><h3 class="header-title">Luxury Stays</h3><span class="line"></span>
+            <span class="line"></span><h3 class="header-title">Legendary Stays</h3><span class="line"></span>
         </div>
         <div class="hotel-grid">
             <div class="hotel-card">
@@ -145,53 +156,64 @@
                 <div class="hotel-info">
                     <span class="hotel-tag">Marina Bay</span>
                     <h5>Marina Bay Sands</h5>
-                    <p>The pinnacle of Singaporean luxury, featuring the world's most famous infinity pool and breathtaking views of the skyline.</p>
+                    <p>Home to the world's most famous infinity pool, this architectural icon defines the Singapore skyline.</p>
+                </div>
+            </div>
+            <div class="hotel-card">
+                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=300">
+                <div class="hotel-info">
+                    <span class="hotel-tag">Colonial District</span>
+                    <h5>Raffles Hotel</h5>
+                    <p>The birthplace of the Singapore Sling, this historic gem offers timeless colonial elegance.</p>
+                </div>
+            </div>
+            <div class="hotel-card">
+                <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?q=80&w=300">
+                <div class="hotel-info">
+                    <span class="hotel-tag">Sentosa</span>
+                    <h5>Capella Singapore</h5>
+                    <p>A secluded resort blending old-world architecture with modern luxury, set on 30 acres of rolling hills.</p>
                 </div>
             </div>
             <div class="hotel-card">
                 <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=300">
                 <div class="hotel-info">
-                    <span class="hotel-tag">Downtown</span>
-                    <h5>Raffles Hotel</h5>
-                    <p>A legendary colonial masterpiece. Home of the Singapore Sling and unparalleled heritage luxury.</p>
-                </div>
-            </div>
-            <div class="hotel-card">
-                <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=300">
-                <div class="hotel-info">
-                    <span class="hotel-tag">Sentosa Island</span>
-                    <h5>Capella Singapore</h5>
-                    <p>Set on a lush hillside with sea views, this resort offers a tranquil beachside escape just minutes from the city center.</p>
-                </div>
-            </div>
-            <div class="hotel-card">
-                <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=300">
-                <div class="hotel-info">
-                    <span class="hotel-tag">Orchard Road</span>
-                    <h5>The St. Regis Singapore</h5>
-                    <p>Known for its exquisite art collection and signature butler service, it is the ultimate address for luxury shoppers.</p>
+                    <span class="hotel-tag">Orchard</span>
+                    <h5>The Ritz-Carlton, Millenia</h5>
+                    <p>Renowned for its unobstructed views of Marina Bay and its massive collection of museum-quality art.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="site-footer">
-        <div class="footer-container">
-            <div class="footer-column">
-                <ul style="list-style: none; padding: 0;">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
+    <footer class="fun-footer">
+        <div class="footer-insta-grid">
+            <div class="insta-item"><img src="./thailand.jpg" alt="Thailand"></div>
+            <div class="insta-item"><img src="./greece.jpg" alt="Greece"></div>
+            <div class="insta-item"><img src="./rome.JPG" alt="Italy"></div>
+            <div class="insta-item"><img src="./dubai.JPG" alt="Dubai"></div>
+            <div class="insta-item"><img src="./makeup.JPG" alt="Makeup Project"></div>
+            <div class="insta-item"><img src="./machupichu.png" alt="Travel"></div>
+        </div>
+
+        <div class="footer-content">
+            <div class="footer-tagline">Follow the Journey</div>
+            
+            <div class="footer-nav">
+                <a href="index.html">Home</a>
+                <a href="about-me.html">About</a>
+                <a href="travel.html">Destinations</a>
+                <a href="mailto:renataoliveiraofficial@hotmail.com">Contact</a>
             </div>
-            <div class="footer-newsletter" style="text-align: center;">
-                <p style="font-size: 13px; color: #777;">Join the list for exclusive travel guides.</p>
-                <div style="border-bottom: 1px solid #333; width: 60px; margin: 20px auto;"></div>
+
+            <div class="footer-socials">
+                <a href="https://www.instagram.com/renataoliveiraofficial" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@renataoliveiraofficial" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <a href="https://www.pinterest.com/RenataxoliverNY" target="_blank"><i class="fab fa-pinterest"></i></a>
+                <a href="mailto:renataoliveiraofficial@hotmail.com"><i class="far fa-envelope"></i></a>
             </div>
-            <div class="footer-branding">
-                <img src="./renatalogo.png" class="footer-logo-img" alt="Branding Collage">
-                <div style="font-family: 'Playfair Display'; font-size: 38px;">2026</div>
-            </div>
+
+            <p class="copyright">&copy; 2026 Renata Oliver &bull; Made with Love &bull; Chappaqua, NY</p>
         </div>
     </footer>
 

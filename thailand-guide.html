@@ -3,219 +3,218 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Renata Oliveira | Thailand Travel Hub</title>
+    <title>Thailand Travel Guide | Renata Oliveira</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
-        /* --- GLOBAL & PASTEL STYLES --- */
+        /* --- GLOBAL STYLES --- */
         * { box-sizing: border-box; }
-        body { margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; color: #444; background-color: #fff; line-height: 1.8; }
-        a { text-decoration: none; color: inherit; transition: 0.3s; cursor: pointer; }
-        
-        /* Pastel Palette */
-        .bg-pink { background-color: #fff0f5; }
-        .bg-peach { background-color: #fdfaf5; }
-        .text-lavender { color: #c3a1e2; }
-
-        /* --- TOP BAR --- */
-        .top-bar {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 12px 40px; font-size: 10px; letter-spacing: 2.5px;
-            text-transform: uppercase; background-color: #fff0f5; border-bottom: 1px solid #f2f2f2;
-        }
-
-        /* --- BRANDING --- */
-        .site-header { padding: 50px 0 35px; text-align: center; }
-        .site-title { font-family: 'Playfair Display', serif; font-size: 50px; letter-spacing: 12px; text-transform: uppercase; margin: 0; }
+        body { margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; color: #333; background-color: #fff; line-height: 1.8; overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; transition: 0.3s ease; cursor: pointer; }
+        a:hover { opacity: 0.7; }
 
         /* --- NAVIGATION --- */
-        .main-nav {
-            border-top: 1px solid #f2f2f2; border-bottom: 1px solid #f2f2f2;
-            padding: 16px 0; text-align: center; position: sticky; top: 0;
-            background-color: #fdfaf5; z-index: 1000;
+        .site-header { padding: 40px 0 20px; text-align: center; border-bottom: 1px solid #f2f2f2; }
+        .site-title { font-family: 'Playfair Display', serif; font-size: 38px; letter-spacing: 10px; text-transform: uppercase; margin: 0; font-weight: 400; }
+        .back-nav { padding: 15px 0; text-align: center; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; border-bottom: 1px solid #f2f2f2; background: #fafafa; }
+
+        /* --- HERO --- */
+        .guide-hero {
+            height: 70vh;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('./thailand.jpg');
+            background-size: cover; background-position: center;
+            display: flex; align-items: center; justify-content: center; color: #fff; text-align: center;
         }
-        .nav-links { margin: 0; padding: 0; list-style: none; display: flex; justify-content: center; }
-        .nav-links > li { position: relative; margin: 0 25px; font-size: 11px; letter-spacing: 3px; font-weight: 500; text-transform: uppercase; }
+        .hero-text h1 { font-family: 'Playfair Display', serif; font-size: 60px; letter-spacing: 8px; text-transform: uppercase; margin: 0; }
+        .hero-text p { font-family: 'Mrs Saint Delafield', cursive; font-size: 45px; margin-top: -10px; }
 
-        /* Dropdown Logic */
-        .submenu {
-            display: none; position: absolute; top: 100%; left: 50%;
-            transform: translateX(-50%); background: white; min-width: 220px;
-            border: 1px solid #f2f2f2; padding: 20px 0; margin-top: 15px;
-            z-index: 2000; text-align: left; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        }
-        .dropdown:hover .submenu { display: block; }
-        .submenu li { display: block; padding: 8px 25px; }
-        .submenu li a { font-size: 10px; letter-spacing: 2px; color: #333; }
-        .submenu li:hover { background-color: #fff0f5; }
+        /* --- INTRO --- */
+        .intro-container { max-width: 800px; margin: 80px auto; text-align: center; padding: 0 40px; }
+        .intro-container h2 { font-family: 'Playfair Display', serif; font-size: 24px; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 30px; }
+        .intro-container p { color: #666; font-size: 15px; line-height: 2; }
 
-        /* --- HUB CONTENT --- */
-        .post-hero { height: 65vh; background-image: url('https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?q=80&w=2000'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; }
-        .hero-overlay { background: rgba(255, 255, 255, 0.98); padding: 50px 70px; text-align: center; max-width: 750px; border: 1px solid #f2f2f2; }
-        .hero-overlay h1 { font-family: 'Playfair Display', serif; font-size: 46px; font-weight: 400; margin: 15px 0; }
-
-        .hub-section { max-width: 1100px; margin: 100px auto; padding: 0 40px; }
-        
-        /* City Blocks Styling */
-        .city-block { margin-bottom: 100px; padding: 40px; border: 1px solid #fff3f8; background: #fffafc; }
-        .city-block h2 { font-family: 'Playfair Display', serif; font-size: 34px; font-weight: 400; color: #333; margin-bottom: 25px; border-bottom: 1px solid #c3a1e2; display: inline-block; padding-bottom: 5px; }
-        
-        .city-details { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 20px; }
-        .city-info h3 { font-family: 'Playfair Display', serif; font-size: 18px; text-transform: uppercase; letter-spacing: 2px; color: #c3a1e2; }
-        .city-info ul { list-style: none; padding: 0; }
-        .city-info li { margin-bottom: 10px; font-size: 14px; border-left: 2px solid #fff0f5; padding-left: 15px; }
-        
-        .city-image img { width: 100%; height: 350px; object-fit: cover; border: 8px solid #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
-
-        .line-header { display: flex; align-items: center; justify-content: center; margin: 80px 0 50px; }
+        /* --- SECTIONS --- */
+        .section-padding { max-width: 1200px; margin: 0 auto 100px; padding: 0 40px; }
+        .line-header { display: flex; align-items: center; justify-content: center; margin-bottom: 60px; }
         .line { flex: 1; height: 1px; background: #eee; }
-        .header-title { font-family: 'Playfair Display', serif; font-size: 24px; margin: 0 30px; letter-spacing: 4px; text-transform: uppercase; }
+        .header-title { font-family: 'Playfair Display', serif; font-size: 20px; margin: 0 30px; letter-spacing: 4px; text-transform: uppercase; color: #555; }
 
-        @media (max-width: 768px) { .city-details { grid-template-columns: 1fr; } }
+        /* --- CITY GRID --- */
+        .city-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
+        .city-card { position: relative; height: 450px; overflow: hidden; display: block; }
+        .city-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s; }
+        .city-card:hover img { transform: scale(1.1); }
+        .city-overlay { position: absolute; bottom: 0; left: 0; width: 100%; padding: 40px 20px; background: linear-gradient(transparent, rgba(0,0,0,0.7)); color: #fff; text-align: center; }
+        .city-overlay h4 { font-family: 'Playfair Display', serif; font-size: 26px; margin: 0; letter-spacing: 3px; text-transform: uppercase; }
+
+        /* --- FEATURED TOWN --- */
+        .featured-town { background: #faf7f5; padding: 100px 40px; display: flex; align-items: center; gap: 60px; max-width: 1200px; margin: 0 auto 100px; }
+        .town-img { flex: 1.2; height: 500px; }
+        .town-img img { width: 100%; height: 100%; object-fit: cover; box-shadow: 20px 20px 0 #eee; }
+        .town-text { flex: 1; }
+        .town-text h3 { font-family: 'Playfair Display', serif; font-size: 32px; margin-bottom: 20px; }
+
+        /* --- HOTELS SECTION --- */
+        .hotel-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; }
+        .hotel-card { background: #faf7f5; padding: 30px; display: flex; align-items: center; gap: 25px; border: 1px solid #f2f2f2; }
+        .hotel-card img { width: 150px; height: 150px; object-fit: cover; border-radius: 2px; }
+        .hotel-info h5 { font-family: 'Playfair Display', serif; font-size: 18px; margin: 0 0 10px 0; }
+        .hotel-info p { font-size: 12px; color: #777; margin: 0; line-height: 1.6; }
+        .hotel-tag { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: #d4af37; font-weight: 600; display: block; margin-bottom: 5px; }
+
+        /* --- FUN & MODERN FOOTER --- */
+        .fun-footer { background-color: #fff; border-top: 1px solid #eee; padding: 80px 0 40px; margin-top: 100px; }
+        .footer-insta-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; max-width: 1200px; margin: 0 auto 50px; padding: 0 20px; }
+        .insta-item { aspect-ratio: 1/1; overflow: hidden; }
+        .insta-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s ease; }
+        .insta-item:hover img { transform: scale(1.1); }
+        .footer-content { text-align: center; max-width: 800px; margin: 0 auto; }
+        .footer-tagline { font-family: 'Mrs Saint Delafield', cursive; font-size: 40px; color: #cdc1b4; margin-bottom: 10px; }
+        .footer-nav { margin: 25px 0; display: flex; justify-content: center; gap: 30px; }
+        .footer-nav a { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #333; font-weight: 600; }
+        .footer-socials { display: flex; justify-content: center; gap: 20px; margin-bottom: 40px; }
+        .footer-socials a { width: 45px; height: 45px; background: #faf7f5; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #333; transition: 0.3s; }
+        .footer-socials a:hover { background: #333; color: #fff; transform: translateY(-5px); }
+        .copyright { font-size: 10px; color: #bbb; letter-spacing: 2px; text-transform: uppercase; }
+
+        @media (max-width: 1024px) {
+            .city-grid, .hotel-grid { grid-template-columns: 1fr; }
+            .featured-town { flex-direction: column; }
+            .footer-insta-grid { grid-template-columns: repeat(3, 1fr); }
+        }
     </style>
 </head>
 <body>
 
-    <div class="top-bar">
-        <div>Travel · Beauty · Style · Living</div>
-        <div class="top-socials"><a href="#"><i class="fab fa-instagram"></i></a> <a href="#"><i class="fab fa-tiktok"></i></a></div>
-    </div>
-
     <header class="site-header">
         <h1 class="site-title">Renata Oliveira</h1>
     </header>
-
-    <nav class="main-nav">
-        <ul class="nav-links">
-            <li><a href="index.html">HOME</a></li>
-            <li><a href="#">ABOUT</a></li>
-            <li class="dropdown">
-                <a href="#">ASIA <i class="fas fa-chevron-down" style="font-size: 8px; margin-left: 5px;"></i></a>
-                <ul class="submenu">
-                    <li><a href="vietnam-guide.html">VIETNAM HUB</a></li>
-                    <li><a href="thailand-guide.html">THAILAND HUB</a></li>
-                    <li><a href="#">CHINA (COMING SOON)</a></li>
-                </ul>
-            </li>
-            <li><a href="#">SHOP</a></li>
-            <li><a href="#">CONTACT</a></li>
-        </ul>
+    
+    <nav class="back-nav">
+        <a href="./destinations.html"><i class="fas fa-chevron-left" style="font-size: 8px;"></i> Back to Destinations</a>
     </nav>
 
-    <section class="post-hero">
-        <div class="hero-overlay">
-            <span class="text-lavender" style="letter-spacing: 5px; font-size: 10px; text-transform: uppercase;">The Land of Smiles</span>
-            <h1>The Thailand Hub</h1>
-            <p style="font-style: italic; color: #888;">Spiritual temples, turquoise waters, and vibrant city life.</p>
+    <section class="guide-hero">
+        <div class="hero-text">
+            <h1>Thailand</h1>
+            <p>The Land of Smiles</p>
         </div>
     </section>
 
-    <div class="hub-section">
-        
-        <div class="city-block">
-            <h2>Bangkok</h2>
-            <div class="city-details">
-                <div class="city-info">
-                    <h3>Hotels to Stay</h3>
-                    <ul>
-                        <li><strong>Mandarin Oriental:</strong> A historic riverside gem with unparalleled service.</li>
-                        <li><strong>The Siam:</strong> A boutique Art Deco masterpiece.</li>
-                    </ul>
-                    <h3>Favorite Temples</h3>
-                    <ul>
-                        <li><strong>Wat Arun:</strong> The stunning "Temple of Dawn" on the river.</li>
-                        <li><strong>Wat Phra Kaew:</strong> Home to the Emerald Buddha.</li>
-                    </ul>
-                </div>
-                <div class="city-image"><img src="https://images.unsplash.com/photo-1504609773096-104ff2c73ba4?q=80&w=600"></div>
-            </div>
-        </div>
+    <section class="intro-container">
+        <h2>Southeast Asia Discovery</h2>
+        <p>From the golden spires of Bangkok to the turquoise waters of the Andaman Sea, Thailand is a masterpiece of culture and nature. Whether you seek the chaotic energy of the night markets or the silent luxury of a private island villa, this guide captures the essence of my journey through this tropical paradise.</p>
+    </section>
 
-        <div class="city-block">
-            <h2>Phuket</h2>
-            <div class="city-details">
-                <div class="city-image"><img src="https://images.unsplash.com/photo-1589394815804-964ed9be2eb3?q=80&w=600"></div>
-                <div class="city-info">
-                    <h3>Hotels to Stay</h3>
-                    <ul>
-                        <li><strong>Amanpuri:</strong> The gold standard of luxury pavilions.</li>
-                        <li><strong>Rosewood Phuket:</strong> A sustainable paradise at Emerald Bay.</li>
-                    </ul>
-                    <h3>Favorite Temples</h3>
-                    <ul>
-                        <li><strong>Wat Chalong:</strong> The largest and most revered temple on the island.</li>
-                        <li><strong>Big Buddha:</strong> 45 meters of white marble with 360-degree views.</li>
-                    </ul>
-                </div>
-            </div>
+    <section class="section-padding">
+        <div class="line-header">
+            <span class="line"></span><h3 class="header-title">Destination Highlights</h3><span class="line"></span>
         </div>
-
-        <div class="city-block">
-            <h2>Chiang Mai & Rai</h2>
-            <div class="city-details">
-                <div class="city-info">
-                    <h3>Hotels to Stay</h3>
-                    <ul>
-                        <li><strong>Raya Heritage:</strong> Inspired by northern Thai craft and culture.</li>
-                        <li><strong>Four Seasons Tented Camp:</strong> A luxury escape in the Golden Triangle.</li>
-                    </ul>
-                    <h3>Favorite Temples</h3>
-                    <ul>
-                        <li><strong>Wat Rong Khun (White Temple):</strong> A contemporary masterpiece in Chiang Rai.</li>
-                        <li><strong>Wat Phra That Doi Suthep:</strong> A sacred site overlooking Chiang Mai.</li>
-                    </ul>
-                </div>
-                <div class="city-image"><img src="https://images.unsplash.com/photo-1598970605070-a38a6ccd3a2d?q=80&w=600"></div>
-            </div>
+        <div class="city-grid">
+            <a href="#" class="city-card">
+                <img src="./thailand.jpg">
+                <div class="city-overlay"><h4>Bangkok</h4><span>Temples & Street Food</span></div>
+            </a>
+            <a href="#" class="city-card">
+                <img src="https://images.unsplash.com/photo-1589394815804-964eddc12eb9?q=80&w=1000">
+                <div class="city-overlay"><h4>Phuket</h4><span>Luxury Beach Escapes</span></div>
+            </a>
+            <a href="#" class="city-card">
+                <img src="./thailand.jpg">
+                <div class="city-overlay"><h4>Koh Samui</h4><span>Tropical Serenity</span></div>
+            </a>
+            <a href="#" class="city-card">
+                <img src="https://images.unsplash.com/photo-1621255193910-f1cc23992a76?q=80&w=1000">
+                <div class="city-overlay"><h4>Pattaya</h4><span>Gulf Coast Vibrancy</span></div>
+            </a>
         </div>
+    </section>
 
-        <div class="city-block">
-            <h2>Koh Samui</h2>
-            <div class="city-details">
-                <div class="city-image"><img src="https://images.unsplash.com/photo-1537956411545-22444983088b?q=80&w=600"></div>
-                <div class="city-info">
-                    <h3>Hotels to Stay</h3>
-                    <ul>
-                        <li><strong>Six Senses Samui:</strong> Incredible ocean-view villas.</li>
-                        <li><strong>W Koh Samui:</strong> Modern, chic, and high-energy.</li>
-                    </ul>
-                    <h3>Favorite Temples</h3>
-                    <ul>
-                        <li><strong>Wat Plai Laem:</strong> Known for the 18-arm statue of Guanyin.</li>
-                        <li><strong>Wat Phra Yai:</strong> The Big Buddha Temple on the northern coast.</li>
-                    </ul>
+    <section class="featured-town">
+        <div class="town-img">
+            <img src="./elefante.JPG">
+        </div>
+        <div class="town-text">
+            <span>Must Visit</span>
+            <h3>Chiang Mai</h3>
+            <p>One of the most sought-after experiences in Chiang Mai is visiting an elephant sanctuary. In recent years, the focus has shifted heavily toward ethical tourism, moving away from riding and toward observation and care.</p>
+            <a href="#" style="font-size: 11px; letter-spacing: 2px; text-transform: uppercase; border-bottom: 1px solid #333;">Explore History</a>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="line-header">
+            <span class="line"></span><h3 class="header-title">Tropical Luxury</h3><span class="line"></span>
+        </div>
+        <div class="hotel-grid">
+            <div class="hotel-card">
+                <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=300">
+                <div class="hotel-info">
+                    <span class="hotel-tag">Bangkok</span>
+                    <h5>Mandarin Oriental</h5>
+                    <p>The ultimate legend on the Chao Phraya River, offering world-class service and historic charm.</p>
                 </div>
             </div>
-        </div>
-
-        <div class="city-block">
-            <h2>Pattaya</h2>
-            <div class="city-details">
-                <div class="city-info">
-                    <h3>Hotels to Stay</h3>
-                    <ul>
-                        <li><strong>Mason Pattaya:</strong> Ultra-modern beachfront villas.</li>
-                        <li><strong>Hilton Pattaya:</strong> Stunning views overlooking the bay.</li>
-                    </ul>
-                    <h3>Favorite Sights</h3>
-                    <ul>
-                        <li><strong>Sanctuary of Truth:</strong> A hand-carved teak architectural wonder.</li>
-                        <li><strong>Wat Phra Yai:</strong> Big Buddha Hill for panoramic city views.</li>
-                    </ul>
+            <div class="hotel-card">
+                <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?q=80&w=300">
+                <div class="hotel-info">
+                    <span class="hotel-tag">Phuket</span>
+                    <h5>Amanpuri</h5>
+                    <p>A serene sanctuary of Thai architecture tucked away in a private coconut grove overlooking the sea.</p>
                 </div>
-                <div class="city-image"><img src="https://images.unsplash.com/photo-1590059530472-a42e1329c488?q=80&w=600"></div>
+            </div>
+            <div class="hotel-card">
+                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=300">
+                <div class="hotel-info">
+                    <span class="hotel-tag">Koh Samui</span>
+                    <h5>Four Seasons Resort</h5>
+                    <p>Hillside villas with private infinity pools and breathtaking views of the Gulf of Thailand.</p>
+                </div>
+            </div>
+            <div class="hotel-card">
+                <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=300">
+                <div class="hotel-info">
+                    <span class="hotel-tag">Pattaya</span>
+                    <h5>Royal Wing Suites</h5>
+                    <p>An exclusive beachfront sanctuary offering personalized service and elegant pool-side luxury.</p>
+                </div>
             </div>
         </div>
+    </section>
 
-    </div>
+    <footer class="fun-footer">
+        <div class="footer-insta-grid">
+            <div class="insta-item"><img src="./thailand.jpg" alt="Thailand"></div>
+            <div class="insta-item"><img src="./greece.jpg" alt="Greece"></div>
+            <div class="insta-item"><img src="./rome.JPG" alt="Italy"></div>
+            <div class="insta-item"><img src="./dubai.JPG" alt="Dubai"></div>
+            <div class="insta-item"><img src="./makeup.JPG" alt="Makeup Project"></div>
+            <div class="insta-item"><img src="./machupichu.png" alt="Food Content"></div>
+        </div>
 
-    <footer class="bg-peach" style="padding: 40px; text-align: center; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; border-top: 1px solid #f2f2f2;">
-        © 2026 Renata Oliveira · Social Media Magic Maker
+        <div class="footer-content">
+            <div class="footer-tagline">Follow the Journey</div>
+            
+            <div class="footer-nav">
+                <a href="index.html">Home</a>
+                <a href="about-me.html">About</a>
+                <a href="travel.html">Destinations</a>
+                <a href="mailto:renataoliveiraofficial@gmail.com">Contact</a>
+            </div>
+
+            <div class="footer-socials">
+                <a href="https://www.instagram.com/renataoliveiraofficial" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@renataoliveiraofficial" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <a href="https://www.pinterest.com/RenataxoliverNY" target="_blank"><i class="fab fa-pinterest"></i></a>
+                <a href="mailto:renataoliveiraofficial@hotmail.com"><i class="far fa-envelope"></i></a>
+            </div>
+
+            <p class="copyright">&copy; 2026 Renata Oliver &bull; Made with Love &bull; Chappaqua, NY</p>
+        </div>
     </footer>
 
 </body>
